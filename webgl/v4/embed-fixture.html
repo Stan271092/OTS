@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OTS embed test fixture</title>
+  <style>
+    body{margin:0;background:#eef1f3;font-family:sans-serif;}
+    .stage{width:700px;height:600px;margin:40px auto;background:#fff;border-radius:12px;overflow:hidden;position:relative;}
+    iframe#resin-frame{display:block;width:100%;height:100%;border:none;}
+    .controls{text-align:center;margin:16px;}
+  </style>
+  <script src="../../embed-host.js" defer></script>
+</head>
+<body>
+  <div class="stage">
+    <iframe id="resin-frame"
+      data-src="embed.html"
+      title="OTS resin 3D test fixture"
+      sandbox="allow-scripts allow-same-origin">
+    </iframe>
+  </div>
+  <div class="controls">
+    <button id="hide-frame" type="button">Hide iframe (CSS)</button>
+    <button id="show-frame" type="button">Show iframe</button>
+    <span id="fixture-status">waiting...</span>
+  </div>
+  <script>
+    document.getElementById('hide-frame').addEventListener('click',()=>{
+      document.querySelector('iframe#resin-frame').style.visibility='hidden';
+      document.getElementById('fixture-status').textContent='iframe hidden';
+    });
+    document.getElementById('show-frame').addEventListener('click',()=>{
+      document.querySelector('iframe#resin-frame').style.visibility='';
+      document.getElementById('fixture-status').textContent='iframe visible';
+    });
+    // Expose child-ready signal to test
+    window.__childReady=false;
+    window.addEventListener('message',function(e){
+      if(e.data&&e.data.type==='ots-resin-ready')window.__childReady=true;
+    });
+  </script>
+</body>
+</html>

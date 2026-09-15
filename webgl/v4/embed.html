@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OTS — живая смола</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="embed.css">
+  <script type="module" src="scene.mjs"></script>
+</head>
+<body>
+  <!--
+    Required DOM IDs (contract with scene.mjs and check_embed.cjs):
+    #hero  — root wrapper (data-background attribute read by syncBackdrop)
+    #visual — canvas container (ResizeObserver, IntersectionObserver target)
+    #scene  — WebGL canvas
+    #loading — loading/error message
+    #status — accessible live status (visually hidden)
+    #pause  — pause/resume button
+  -->
+  <div id="hero" data-background="light">
+    <div id="visual">
+      <canvas id="scene" role="img"
+        aria-label="Прозрачная смола с порошком и включениями. Живая 3D-модель, ракурс фиксированный.">
+      </canvas>
+      <div id="loading" role="status">Подготовка 3D…</div>
+    </div>
+    <span id="status" role="status" aria-live="polite">Подготовка</span>
+    <button id="pause" type="button" aria-pressed="false" disabled>Пауза</button>
+  </div>
+</body>
+</html>

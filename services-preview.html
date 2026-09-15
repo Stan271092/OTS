@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OTS — превью услуг</title>
+<style>
+/* Manrope — заголовки и текст (как в утверждённом hero-preview.html) */
+@font-face{font-family:Manrope;src:url(assets/manrope-regular.ttf) format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Manrope;src:url(assets/manrope-semibold.ttf) format('truetype');font-weight:600 800;font-display:swap}
+:root{--ink:#161a1f;--muted:#68757f;--blue:#2459ed;--cyan:#29a6ff;--light:#83d7ff;--page:#f2f6fa;--line:#e1e7eb;
+--head:Manrope,Arial,sans-serif;--text:Manrope,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--text)}
+.wrap{max-width:1440px;margin:auto;padding:24px clamp(20px,5vw,70px) 40px}
+/* — текстовый блок «Услуги» внутри синей панели, над табами (отдельная верхняя панель удалена) — */
+.page-row{display:flex;flex-direction:column;gap:18px;min-height:0}
+.side-copy{width:100%;min-width:0;display:flex;flex-direction:column;gap:0;padding:0;
+background:transparent;border:none;margin:0 0 42px}
+.side-copy .side-label{color:#4a86d8;margin-bottom:20px}
+.side-heading{margin:0 0 20px;font-family:var(--head);font-weight:500;font-size:clamp(26px,2.6vw,40px);line-height:1.08;letter-spacing:.01em;color:#161a1f;white-space:nowrap}
+.side-heading em{font-style:normal;background:linear-gradient(100deg,#2459ed 0%,#29a6ff 60%,#83d7ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.side-lead{margin:0;font-size:13.5px;line-height:1.65;color:#5d6b76}
+.side-actions .cta{width:auto;height:48px;padding:0 28px}
+.side-label{font-family:var(--head);font-size:12px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:#4a86d8;margin:0}
+.cta{position:relative;display:inline-flex;align-items:center;justify-content:center;width:180px;height:60px;cursor:pointer;background:transparent;
+border:none;outline:none;transition:background 2.8s cubic-bezier(.16,.65,.3,1);font-family:inherit;border-radius:12px}
+.cta::after{content:'';position:absolute;inset:0;border-radius:12px;border:1px solid #91c9ff;pointer-events:none}
+.cta:hover{background:#2459ed}
+.cta span{color:#2459ed;font-family:var(--head);font-size:15px;font-weight:500;letter-spacing:.04em;position:relative;z-index:2;transition:color 2.8s cubic-bezier(.16,.65,.3,1)}
+.cta:hover span{color:#fff}
+/* — аккордеон-табы услуг: синий градиент, 6 карт. Первый раскрыт по умолчанию;
+   ховер на другой таб раскрывает его, открытый ранее схлопывается (JS-класс .open) — */
+.services-tabs{margin:0;min-width:0;border-radius:28px;padding:clamp(18px,2.6vw,34px);
+background:#fff;border:1px solid #d7e4f5}
+.tabs-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin:4px 6px 18px}
+.tabs-head .banner-label{color:#fff}
+.tabs-count{font-family:var(--head);font-size:13px;font-weight:400;letter-spacing:.24em;color:#e4f0fc}
+.services-body{flex:1;min-width:0;display:flex;flex-direction:column}
+.tabs{display:flex;gap:10px;height:260px}
+.tab{flex:1;min-width:0;position:relative;border-radius:18px;overflow:hidden;cursor:pointer;
+background:linear-gradient(160deg,#7FB7EE 0%,#5C9AE2 45%,#3F7DDC 100%);border:1px solid #b9d4f2;box-shadow:0 0 0 2px #fff;
+transition:flex-grow .65s cubic-bezier(.22,.61,.36,1),background .5s ease .12s,border-color .5s ease .12s}
+.tab.open{flex-grow:3;background:#FDFEFF;border-color:#d7e4f5;box-shadow:0 8px 22px -12px rgba(63,125,220,.45)}
+/* контурная графика: прижата к правой границе таба, единое позиционирование для всех */
+.tab-art{position:absolute;right:18px;top:14px;width:100px;height:100px;opacity:0;
+transition:opacity .18s ease;pointer-events:none;z-index:1}
+.tab.open .tab-art{opacity:1;transition:opacity .35s ease}
+.tab-art svg{width:100%;height:100%;display:block}
+/* SVG-иконка масштабируется так, чтобы занять верхний правый угол:
+   preserveAspectRatio="xMaxYMin meet" держит пропорции и жмёт к правому-верху */
+/* белая шторка ::after удалена — давала белый квадрат поверх иконки,
+   пока фон таба анимируется из синего в белый */
+/* — лёгкое постоянное движение графики: только transform/opacity/dashoffset,
+   только в открытом табе (свёрнутые стоят — не тратим CPU) — */
+/* траектории пузырьков заданы нативной SVG-анимацией ниже — без CSS transform,
+   чтобы стартовая точка не смещалась и пузырьки не прилетали сбоку */
+@keyframes spin-cw{to{transform:rotate(360deg)}}
+@keyframes spin-ccw{to{transform:rotate(-360deg)}}
+@keyframes dash-run{to{stroke-dashoffset:-7}}
+@keyframes node-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes drop-fall{0%{transform:translateY(0) scale(.7);opacity:0}20%{opacity:.85;transform:translateY(2px) scale(1)}90%{opacity:.85}100%{transform:translateY(46px) scale(1);opacity:0}}
+/* «плавание» молекул: мягкое блуждание с возвратом, у каждого узла свой вектор */
+@keyframes drift-a{0%,100%{transform:translate(0,0)}25%{transform:translate(3.5px,-3px)}50%{transform:translate(-2px,2.5px)}75%{transform:translate(2.5px,2px)}}
+@keyframes drift-b{0%,100%{transform:translate(0,0)}25%{transform:translate(-3px,2.5px)}50%{transform:translate(3px,-2px)}75%{transform:translate(-2px,-3px)}}
+@keyframes drift-c{0%,100%{transform:translate(0,0)}25%{transform:translate(2px,3px)}50%{transform:translate(-3.5px,-1.5px)}75%{transform:translate(1.5px,-2.5px)}}
+@keyframes drift-d{0%,100%{transform:translate(0,0)}25%{transform:translate(-2px,-2.5px)}50%{transform:translate(2.5px,3px)}75%{transform:translate(3px,-1.5px)}}
+.tab.open .bubble,.tab.open .bubble.b2,.tab.open .bubble.b3{animation:none}
+.tab.open .spin-cw,.tab.open .spin-ccw{transform-box:fill-box;transform-origin:center}
+.tab.open .spin-cw{animation:spin-cw 26s linear infinite}
+.tab.open .spin-ccw{animation:spin-ccw 18s linear infinite}
+.tab.open .dash{animation:dash-run .7s linear infinite}
+.tab.open .pulse{animation:node-pulse 2.4s ease-in-out infinite}
+.tab.open .pulse.p2{animation-delay:.6s}
+.tab.open .pulse.p3{animation-delay:1.2s}
+.tab.open .pulse.p4{animation-delay:1.8s}
+.tab.open .drop{animation:drop-fall 2.2s ease-in infinite}
+.tab.open .drop.d2{animation-delay:1.1s}
+/* плавающие узлы молекул (табы 01 и 04) */
+.tab.open .drift{animation:drift-a 6s ease-in-out infinite}
+.tab.open .drift.b{animation-name:drift-b}
+.tab.open .drift.c{animation-name:drift-c}
+.tab.open .drift.d{animation-name:drift-d}
+.tab.open .hand-m,.tab.open .hand-h,.tab.open .orbit{transform-box:view-box;transform-origin:222px 118px}
+.tab.open .hand-m{animation:spin-cw 24s linear infinite}
+.tab.open .hand-h{animation:spin-cw 96s linear infinite}
+.tab.open .orbit{animation:spin-cw 48s linear infinite}
+/* крупный стилизованный номер: тонкая акцентно-голубая цифра с контурным дублем */
+.tab-num{position:absolute;left:24px;top:16px;font-family:var(--head);font-weight:300;
+font-size:clamp(38px,4.2vw,58px);line-height:1;letter-spacing:.06em;
+color:#fff;text-shadow:1px 1px 0 rgba(255,255,255,.35);transition:none;z-index:2}
+.tab.open .tab-num{color:#29a6ff;text-shadow:1px 1px 0 rgba(41,166,255,.35)}
+/* свёрнутый вид: первая строка всех заголовков на одной высоте (блок прижат к низу, текст — от верха блока) */
+.tab-side{position:absolute;left:16px;right:14px;bottom:14px;height:40px;
+display:flex;align-items:flex-start;
+font-family:var(--head);font-weight:400;font-size:12.5px;line-height:1.35;letter-spacing:0;color:#fff;
+opacity:1;transition:opacity .18s ease}
+.tab.open .tab-side{opacity:0;transition:none}
+/* раскрытый вид: заголовок + текст внизу карты;
+   при закрытии контент скрывается мгновенно и не участвует в анимации сжатия,
+   при открытии появляется после того, как полоса почти дораскрылась — текст не «лесенкой» */
+.tab-body{position:absolute;z-index:2;left:22px;right:22px;bottom:0;padding:0 4px 20px;
+opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
+.tab.open .tab-body{opacity:1;visibility:visible;transition:opacity .3s ease,visibility 0s;transition-delay:.55s}
+/* графикой управляет JS: класс .closing глушит её на время сжатия полосы */
+.tab.closing .tab-body,.tab.closing .tab-art{opacity:0!important;visibility:hidden!important;transition:none!important;display:none}
+/* закрывающийся таб: заголовок тоже скрыт на время сжатия — строки не перестраиваются «лесенкой»,
+   после снятия .closing он плавно проявляется */
+.tab.closing .tab-side{opacity:0!important;transition:none!important}
+.tab.closing{background:linear-gradient(160deg,#7FB7EE 0%,#5C9AE2 45%,#3F7DDC 100%)!important;box-shadow:none!important}
+.tab-body h3{font-family:var(--head);font-weight:500;font-size:clamp(20px,1.9vw,25px);line-height:1.12;margin:0;color:#161a1f}
+.tab-body p{margin:10px 0 0;font-size:12.5px;line-height:1.55;color:#5d6b76}
+@media(prefers-reduced-motion:reduce){.tab{transition:none}.tab *{animation:none!important}}
+@media(max-width:900px){
+.services-tabs{border-radius:20px}
+.page-row{display:flex;flex-direction:column;min-height:0}
+.side-copy{width:100%;min-height:0;position:static;padding:24px 22px}
+.side-heading{white-space:normal}
+.tabs{flex-direction:column;height:auto}
+.tab{flex:none;min-height:76px}
+.tab.open{flex-grow:1}
+.tab-side{position:absolute;left:24px;bottom:18px}
+.tab-body{position:relative;left:auto;right:auto;bottom:auto;padding:16px 22px;opacity:1}
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<section aria-labelledby="services-heading">
+<div class="page-row">
+<div class="services-tabs">
+<div class="side-copy">
+<p class="side-label">Сферы деятельности</p>
+<h2 id="services-heading" class="side-heading">Комплексные эпоксидные <em>решения</em></h2>
+<p class="side-lead">От концепции до производства — OTS предлагает полный спектр услуг в области разработки, производства и композитного материаловедения.</p>
+</div>
+<div class="tabs">
+<article class="tab open">
+<span class="tab-num">01</span>
+<span class="tab-side">Исследования и разработки</span>
+<div class="tab-art" aria-hidden="true"><svg viewBox="127 56 156 156" fill="none" preserveAspectRatio="xMaxYMin meet">
+<!-- лабораторная колба -->
+<path d="M172 56 H238 M186 56 V104 L136 186 A16 16 0 0 0 150 212 H260 A16 16 0 0 0 274 186 L224 104 V56" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
+<!-- уровень жидкости -->
+<path d="M152 176 H258" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.5"/>
+<!-- молекула внутри: узлы плавают (drift) и пульсируют -->
+<circle class="pulse drift" cx="198" cy="192" r="7" fill="#29a6ff" fill-opacity=".85"/>
+<circle class="pulse p2 drift b" cx="232" cy="198" r="5.5" fill="#83d7ff"/>
+<line x1="205" y1="194" x2="226" y2="197" stroke="#29a6ff" stroke-opacity=".55" stroke-width="1.5"/>
+<!-- пузырьки: нативная SVG-анимация от точек внутри жидкости к горлышку;
+     движение идёт по координатам SVG, поэтому пузырьки не прилетают сбоку -->
+<circle class="bubble" cx="180" cy="202" r="3.4" opacity="0" stroke="#29a6ff" stroke-opacity=".9" stroke-width="1.6">
+<animate attributeName="cx" dur="5s" repeatCount="indefinite" values="180;181;186;194;198"/>
+<animate attributeName="cy" dur="5s" repeatCount="indefinite" values="202;188;155;110;72"/>
+<animate attributeName="opacity" dur="5s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;.08;.58;.86;1"/>
+</circle>
+<circle class="bubble b2" cx="220" cy="206" r="2.8" opacity="0" stroke="#29a6ff" stroke-opacity=".85" stroke-width="1.5">
+<animate attributeName="cx" dur="5s" begin="1.7s" repeatCount="indefinite" values="220;219;216;212;209"/>
+<animate attributeName="cy" dur="5s" begin="1.7s" repeatCount="indefinite" values="206;190;158;112;70"/>
+<animate attributeName="opacity" dur="5s" begin="1.7s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;.08;.58;.86;1"/>
+</circle>
+<circle class="bubble b3" cx="246" cy="200" r="2.4" opacity="0" stroke="#29a6ff" stroke-opacity=".85" stroke-width="1.5">
+<animate attributeName="cx" dur="5s" begin="3.4s" repeatCount="indefinite" values="246;242;232;220;212"/>
+<animate attributeName="cy" dur="5s" begin="3.4s" repeatCount="indefinite" values="200;184;154;110;76"/>
+<animate attributeName="opacity" dur="5s" begin="3.4s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;.08;.58;.86;1"/>
+</circle>
+</svg></div>
+<div class="tab-body"><h3>Исследования и разработки</h3><p>Собственные разработки и создание эпоксидных систем в рамках строгих научных исследований, подтверждённые результатами испытаний согласно ГОСТ и химии полимеров.</p></div>
+</article>
+<article class="tab">
+<span class="tab-num">02</span>
+<span class="tab-side">Производство на заказ</span>
+<div class="tab-art" aria-hidden="true"><svg viewBox="185 43 157 157" fill="none" preserveAspectRatio="xMaxYMin meet">
+<!-- шестерня: цельный зубчатый контур одним путём (8 зубьев) -->
+<g class="spin-cw">
+<path d="M232 51 L244 51 L246 70 L257 74 L270 61 L279 69 L268 83 L272 94 L291 97 L291 109 L272 112 L268 123 L279 137 L270 145 L257 132 L246 136 L244 155 L232 155 L230 136 L219 132 L206 145 L197 137 L208 123 L204 112 L185 109 L185 97 L204 94 L208 83 L197 69 L206 61 L219 74 L230 70 Z"
+stroke="#29a6ff" stroke-opacity=".6" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="238" cy="103" r="20" stroke="#29a6ff" stroke-opacity=".5" stroke-width="2"/>
+<circle cx="238" cy="103" r="7" stroke="#83d7ff" stroke-opacity=".8" stroke-width="1.5"/>
+</g>
+<!-- малая шестерёнка рядом, зацеплена с большой -->
+<g class="spin-ccw">
+<path d="M312 138 L318 138 L319 148 L325 151 L332 145 L336 149 L330 155 L332 161 L342 162 L342 168 L332 169 L330 175 L336 181 L332 185 L325 179 L319 182 L318 192 L312 192 L311 182 L305 179 L298 185 L294 181 L300 175 L298 169 L288 168 L288 162 L298 161 L300 155 L294 149 L298 145 L305 151 L311 148 Z"
+stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/>
+<circle cx="315" cy="165" r="9" stroke="#83d7ff" stroke-opacity=".7" stroke-width="1.5"/>
+<circle cx="315" cy="165" r="3.5" stroke="#83d7ff" stroke-opacity=".8" stroke-width="1.2"/>
+</g>
+</svg></div>
+<div class="tab-body"><h3>Производство на заказ</h3><p>Производство эпоксидных систем по ТУ или спецификациям, оптимизированных под конкретные требования заказчика, ГОСТ и химические требования.</p></div>
+</article>
+<article class="tab">
+<span class="tab-num">03</span>
+<span class="tab-side">Комплексное проектирование</span>
+<div class="tab-art" aria-hidden="true"><svg viewBox="96 29 192 192" fill="none" preserveAspectRatio="xMaxYMin meet">
+<!-- проекция детали: вид сверху и сбоку; отверстия-кружочки плавают внутри контура -->
+<rect x="156" y="70" width="108" height="72" rx="7" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2"/>
+<circle class="drift pulse" cx="182" cy="96" r="10" stroke="#83d7ff" stroke-opacity=".65" stroke-width="1.5"/>
+<circle class="drift b pulse p2" cx="238" cy="116" r="10" stroke="#83d7ff" stroke-opacity=".65" stroke-width="1.5"/>
+<!-- вид сбоку -->
+<rect x="156" y="166" width="108" height="38" rx="6" stroke="#29a6ff" stroke-opacity=".45" stroke-width="1.5"/>
+<!-- размерные линии -->
+<line x1="156" y1="52" x2="264" y2="52" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.2"/>
+<line x1="156" y1="46" x2="156" y2="58" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.2"/>
+<line x1="264" y1="46" x2="264" y2="58" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.2"/>
+<line x1="282" y1="70" x2="282" y2="142" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.2"/>
+<line x1="276" y1="70" x2="288" y2="70" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.2"/>
+<line x1="276" y1="142" x2="288" y2="142" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.2"/>
+<!-- линия проекции -->
+<line x1="210" y1="142" x2="210" y2="166" stroke="#29a6ff" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="4 5"/>
+</svg></div>
+<div class="tab-body"><h3>Комплексное проектирование</h3><p>Комплексные проектные услуги, включая анализ материалов, расчёт состава и оптимизацию рецептур для конкретных применений.</p></div>
+</article>
+<article class="tab">
+<span class="tab-num">04</span>
+<span class="tab-side">Консалтинг по материалам</span>
+<div class="tab-art" aria-hidden="true"><svg viewBox="168 50 140 140" fill="none" preserveAspectRatio="xMaxYMin meet">
+<!-- круг с молекулой: узлы + связи, стиль как в колбе таба 01 (лупа удалена) -->
+<circle cx="238" cy="120" r="66" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2"/>
+<line x1="238" y1="120" x2="212" y2="96" stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5"/>
+<line x1="238" y1="120" x2="212" y2="146" stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5"/>
+<line x1="238" y1="120" x2="266" y2="100" stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5"/>
+<line x1="238" y1="120" x2="266" y2="142" stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5"/>
+<line x1="212" y1="96" x2="266" y2="100" stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5"/>
+<line x1="212" y1="146" x2="266" y2="142" stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5"/>
+<circle class="drift c" cx="238" cy="120" r="7" fill="#29a6ff" fill-opacity=".85"/>
+<circle class="pulse drift" cx="212" cy="96" r="5" fill="#83d7ff"/>
+<circle class="pulse p2 drift b" cx="212" cy="146" r="5" fill="#83d7ff"/>
+<circle class="pulse p3 drift c" cx="266" cy="100" r="5" fill="#83d7ff"/>
+<circle class="pulse p4 drift d" cx="266" cy="142" r="5" fill="#83d7ff"/>
+</svg></div>
+<div class="tab-body"><h3>Консалтинг по материалам</h3><p>Экспертное руководство по подбору материалов, обеспечивающее соответствие требованиям системы для конкретного применения и условиям эксплуатации.</p></div>
+</article>
+<article class="tab">
+<span class="tab-num">05</span>
+<span class="tab-side">Прототипирование и тестирование</span>
+<div class="tab-art" aria-hidden="true"><svg viewBox="138.5 32 194 194" fill="none" preserveAspectRatio="xMaxYMin meet">
+<!-- флакон-образец с пробой + контрольные галочки испытаний -->
+<path d="M208 32 C230 64 248 84 248 108 A40 40 0 1 1 168 108 C168 84 186 64 208 32 Z" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2"/>
+<path d="M208 82 C220 99 229 109 229 122 A21 21 0 1 1 187 122 C187 109 196 99 208 82 Z" stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.5"/>
+<!-- капли падают в образец -->
+<path class="drop" d="M288 58 a6 7.5 0 1 0 0.1 0 Z" stroke="#29a6ff" stroke-opacity=".6" stroke-width="1.5"/>
+<path class="drop d2" d="M272 86 a4.5 5.5 0 1 0 0.1 0 Z" stroke="#83d7ff" stroke-opacity=".6" stroke-width="1.5"/>
+<!-- контрольные отметки испытаний -->
+<path d="M276 178 L285 187 L303 162" stroke="#29a6ff" stroke-opacity=".7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M276 212 L285 221 L303 196" stroke="#83d7ff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+<div class="tab-body"><h3>Прототипирование и тестирование</h3><p>Собственные лабораторные мощности для быстрого прототипирования, испытаний и валидации характеристик в реальных условиях.</p></div>
+</article>
+<article class="tab">
+<span class="tab-num">06</span>
+<span class="tab-side">Техническая поддержка</span>
+<div class="tab-art" aria-hidden="true"><svg viewBox="140 34.5 167 167" fill="none" preserveAspectRatio="xMaxYMin meet">
+<!-- круглосуточная поддержка: циферблат + орбита -->
+<circle cx="222" cy="118" r="64" stroke="#29a6ff" stroke-opacity=".55" stroke-width="2"/>
+<g stroke="#83d7ff" stroke-opacity=".55" stroke-width="1.4">
+<line x1="222" y1="58" x2="222" y2="68"/><line x1="222" y1="168" x2="222" y2="178"/>
+<line x1="162" y1="118" x2="172" y2="118"/><line x1="272" y1="118" x2="282" y2="118"/>
+<line x1="180" y1="76" x2="186" y2="82"/><line x1="258" y1="154" x2="264" y2="160"/>
+<line x1="180" y1="160" x2="186" y2="154"/><line x1="258" y1="82" x2="264" y2="76"/>
+</g>
+<!-- стрелки -->
+<line class="hand-m" x1="222" y1="118" x2="222" y2="80" stroke="#29a6ff" stroke-opacity=".85" stroke-width="2.5" stroke-linecap="round"/>
+<line class="hand-h" x1="222" y1="118" x2="254" y2="134" stroke="#83d7ff" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+<circle cx="222" cy="118" r="4.5" fill="#29a6ff" fill-opacity=".85"/>
+<!-- орбита-цикл жизненного цикла -->
+<g class="orbit">
+<circle cx="222" cy="118" r="82" stroke="#83d7ff" stroke-opacity=".35" stroke-width="1.4" stroke-dasharray="5 9"/>
+<circle cx="304" cy="118" r="3.5" fill="#83d7ff"/>
+</g>
+</svg></div>
+<div class="tab-body"><h3>Техническая поддержка</h3><p>Постоянная техническая поддержка на протяжении всего жизненного цикла продукта, от внедрения до оптимизации.</p></div>
+</article>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+// Первый таб раскрыт; ховер раскрывает таб, предыдущий открытый схлопывается.
+// Закрывающемуся табу ставим .closing: контент/графика гаснут мгновенно,
+// а flex-сжатие идёт чисто — без артефактов текста на сжимающейся полосе.
+(function(){
+var tabs = document.querySelectorAll('.tab');
+var CLOSE_MS = 650; // столько же, сколько transition flex-grow
+tabs.forEach(function(tab){
+tab.addEventListener('mouseenter', function(){
+tabs.forEach(function(t){
+if (t === tab) return;
+if (t.classList.contains('open')) {
+t.classList.remove('open');
+t.classList.add('closing');
+clearTimeout(t._ct);
+t._ct = setTimeout(function(){ t.classList.remove('closing'); }, CLOSE_MS);
+}
+});
+tab.classList.remove('closing');
+clearTimeout(tab._ct);
+tab.classList.add('open');
+});
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OTS — hero в два блока</title>
+<style>
+@font-face{font-family:Manrope;src:url(assets/manrope-regular.ttf) format('truetype');font-weight:400}
+@font-face{font-family:Manrope;src:url(assets/manrope-semibold.ttf) format('truetype');font-weight:700}
+:root{--ink:#161a1f;--muted:#68757f;--blue:#2459ed;--cyan:#29a6ff;--page:#edf1f3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:Manrope,Arial,sans-serif}
+.hero{max-width:1440px;margin:auto;padding:24px clamp(20px,5vw,70px) 40px;background:#f7fafb}
+.header{display:flex;align-items:center;gap:28px;height:72px;padding:0 26px;background:#fff;border:1px solid #e2e8ee;border-radius:18px;box-shadow:0 6px 18px -10px rgba(90,115,140,.18);margin-top:2px}
+.logo{width:72px;height:50px;object-fit:contain;flex:none}
+.nav{display:flex;gap:30px;margin:0 auto;color:#2e3a44;font-size:13px;font-weight:500}
+.nav span{cursor:default}
+.lang{display:inline-flex;align-items:center;gap:7px;color:#2e3a44;font-size:13px;white-space:nowrap;flex:none}
+.lang .flag{width:20px;height:14px;border-radius:3px;overflow:hidden;display:inline-flex;flex-direction:column;border:1px solid #dfe6ec;flex:none}
+.lang .flag i{flex:1}
+.lang .flag i:nth-child(1){background:#fff}
+.lang .flag i:nth-child(2){background:#2f6bd8}
+.lang .flag i:nth-child(3){background:#e23c3c}
+.lang::after{content:'▾';font-size:10px;color:#8a97a2;margin-left:2px}
+/* — телефонная кнопка в той же стилистике с SVG-обводкой — */
+.phone{position:relative;display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 18px;
+border:none;outline:none;background:transparent;border-radius:10px;white-space:nowrap;flex:none;cursor:pointer;
+color:#2459ed;font-size:12px;font-weight:100;letter-spacing:.02em;transition:background 2.8s cubic-bezier(.16,.65,.3,1),color 2.8s cubic-bezier(.16,.65,.3,1);font-family:inherit;text-decoration:none}
+.phone::after{content:'';position:absolute;inset:0;border-radius:10px;border:1px solid #91c9ff;pointer-events:none}
+.phone:hover{background:#2459ed;color:#fff}
+.phone .arr{font-size:14px;font-weight:400;margin-left:8px}
+.stage{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);gap:18px;margin-top:18px}
+.copy,.visual{border-radius:24px;overflow:hidden}
+.copy{display:flex;flex-direction:column;justify-content:flex-start;padding:48px clamp(28px,5vw,78px) 48px;background:#fff;border:1px solid #e1e7eb}
+.visual{min-height:0}
+.kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6b7881;margin:0}
+h1{max-width:680px;margin:28px 0 0;font-weight:400;line-height:1.04;letter-spacing:-.05em}
+h1 em{font-style:normal;display:block;font-size:clamp(38px,4.8vw,64px);background:linear-gradient(100deg,#2459ed 0%,#29a6ff 55%,#83d7ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 strong{font-weight:400;display:block;font-size:clamp(22px,2.6vw,34px);color:#3d4b57;margin-top:14px;white-space:nowrap}
+.lead{max-width:510px;margin:28px 0 0;color:#62717b;font-size:15px;line-height:1.65}
+.bottom{display:flex;align-items:center;gap:18px;margin-top:40px}
+/* — кнопка с SVG-обводкой (оригинал: msiter.ru, Кнопка N° 045) — */
+.cta{position:relative;width:180px;height:60px;cursor:pointer;background:transparent;
+border:none;outline:none;transition:background 2.8s cubic-bezier(.16,.65,.3,1);font-family:inherit;border-radius:12px}
+.cta::after{content:'';position:absolute;inset:0;border-radius:12px;border:1px solid #91c9ff;pointer-events:none}
+.cta:hover{background:#2459ed}
+.cta span{color:#2459ed;font-size:18px;font-weight:100;letter-spacing:.02em;position:relative;z-index:2;transition:color 2.8s cubic-bezier(.16,.65,.3,1)}
+.cta:hover span{color:#fff}
+@media(prefers-reduced-motion:reduce){.cta{transition:none}}
+.visual{position:relative;background:#f6fafb;border:1px solid #dbe5ea}
+.visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;transform-origin:50% 0%;animation:ribbon-flow 18s ease-in-out infinite;will-change:transform}
+@keyframes ribbon-flow{0%{transform:translate3d(-1%,-.4%,0) rotate(-1.2deg) scale(1.1)}50%{transform:translate3d(1%,-.4%,0) scale(1.14) rotate(.8deg)}100%{transform:translate3d(-1%,-.4%,0) rotate(-1.2deg) scale(1.1)}}
+@media(prefers-reduced-motion:reduce){.visual img{animation:none}}
+.visual::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,#ffffff20,transparent 45%,#d9effc20);pointer-events:none}
+.visual-note{position:absolute;z-index:2;left:24px;bottom:23px;padding:9px 12px;background:#ffffffc7;color:#33424b;border:1px solid #fff;border-radius:4px;font-size:10px;letter-spacing:.08em}
+.visual-count{position:absolute;z-index:2;right:24px;top:23px;color:#35454e;font-size:10px;letter-spacing:.12em}
+@media(max-width:760px){.hero{padding:18px 16px 28px}.header{gap:12px;padding:0 16px}.nav{display:none}.lang{margin-left:auto}.phone{font-size:10px;padding:8px 12px}.stage{grid-template-columns:1fr}.copy{min-height:540px;padding:42px 26px 32px}.visual{min-height:430px}h1 em{font-size:clamp(34px,10vw,52px)}h1 strong{font-size:clamp(19px,5.4vw,26px);white-space:normal}.bottom{margin-top:24px}.visual img{object-position:50% 50%}}
+</style>
+</head>
+<body>
+<main class="hero">
+<header class="header">
+<img class="logo" src="assets/ots-logo-new.svg" alt="OTS — геометрический логотип">
+<nav class="nav"><span>Услуги</span><span>Проекты</span><span>Контакты</span></nav>
+<span class="lang"><span class="flag"><i></i><i></i><i></i></span>RU</span>
+<a class="phone" href="tel:+79037682653">+7 (903) 768-26-53<i class="arr">↗</i></a>
+</header>
+<section class="stage">
+<article class="copy">
+<div>
+<p class="kicker">ООО «Оптимальные технологические решения»</p>
+<h1><em>Эпоксидные системы</em><strong>От НИОКР до производства</strong></h1>
+<p class="lead">Разрабатываем индивидуальные эпоксидные системы для гражданского строительства, промышленности, аэрокосмической отрасли и потребительских товаров — от экспертной консультации и расчёта до подбора материалов и запуска в производство.</p>
+</div>
+<div class="bottom">
+<button class="cta" id="ctaBtn" type="button" aria-label="Связаться"><span>Связаться</span></button>
+</div>
+</article>
+<aside class="visual" aria-label="Светлая композиция из вязких сине-голубых лент">
+<img src="assets/hero-ribbon-blue.jpg" alt="Светлые вязкие ленты с синими и голубыми акцентами">
+<span class="visual-count">MATERIAL / 01</span>
+</aside>
+</section>
+</main>
+</html>

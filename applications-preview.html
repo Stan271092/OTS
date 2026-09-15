@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OTS — проекты и отрасли</title>
+<style>
+@font-face{font-family:Manrope;src:url(assets/manrope-regular.ttf) format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Manrope;src:url(assets/manrope-semibold.ttf) format('truetype');font-weight:600 800;font-display:swap}
+:root{--ink:#161a1f;--muted:#68757f;--blue:#2459ed;--cyan:#29a6ff;--light:#83d7ff;--page:#f2f6fa;--head:Manrope,Arial,sans-serif;--text:Manrope,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--text)}
+.wrap{max-width:1440px;margin:auto;padding:40px clamp(20px,5vw,70px)}
+.section-intro{display:flex;flex-direction:column;margin:0 0 42px}
+.section-label{font-family:var(--head);font-size:12px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:#4a86d8;margin:0 0 20px}
+.section-heading{margin:0 0 20px;font-family:var(--head);font-weight:500;font-size:clamp(26px,2.6vw,40px);line-height:1.08;letter-spacing:.01em}
+.section-heading em{font-style:normal;background:linear-gradient(100deg,#2459ed 0%,#29a6ff 60%,#83d7ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-description{margin:0;font-size:13.5px;line-height:1.65;color:#5d6b76}
+.applications-layout{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:stretch}
+.sector-controls{display:grid;grid-template-rows:repeat(5,1fr);gap:20px}
+.sector-controls button{padding:12px 18px;text-align:left;font:400 14px/1.4 var(--head);color:#41658b;background:#fff;border:1px solid #d7e4f5;border-radius:14px;cursor:pointer;transition:all .2s;-webkit-appearance:none}
+.sector-controls button:hover{background:#eaf3fd;border-color:#2459ed}
+.sector-controls button:focus-visible{outline:3px solid #2459ed;outline-offset:2px}
+.sector-controls button[aria-pressed="true"]{background:linear-gradient(135deg,#2459ed,#3e8cff);border-color:transparent;color:#fff}
+.application-panel{display:grid;grid-template-columns:1fr 1fr;gap:20px;min-height:360px}
+.application-photo{position:relative;min-width:0;background:#fdfeff;border:1px solid #d7e4f5;border-radius:24px;overflow:hidden}
+.application-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo-label{position:absolute;left:16px;right:16px;bottom:16px;width:fit-content;max-width:calc(100% - 32px);padding:10px 14px;background:rgba(253,254,255,.94);border:1px solid #d7e4f5;border-radius:10px;color:#2459ed;font:400 12px/1.4 var(--head)}
+.photo-counter{position:absolute;top:16px;left:16px;padding:8px 12px;border-radius:8px;background:rgba(253,254,255,.94);color:var(--blue);font:400 14px/1.3 var(--head);letter-spacing:.1em}
+.application-copy{display:flex;flex-direction:column;gap:18px;min-width:0;padding:28px;background:#fdfeff;border:1px solid #d7e4f5;border-radius:24px}
+.application-category{font:400 11px/1.5 var(--head);letter-spacing:.08em;color:#4a86d8;margin:0}
+.application-copy h3{font:500 clamp(20px,2vw,28px)/1.16 var(--head);margin:0;color:var(--ink)}
+.application-description{font-size:13px;line-height:1.65;color:#5d6b76;margin:0}
+.application-list{font-size:13px;line-height:1.65;color:#5d6b76;margin:6px 0 0;padding-left:18px}
+.application-list li+li{margin-top:8px}
+.application-list li::marker{color:var(--cyan)}
+/* Кнопка в стиле hero: пилюля, прозрачная с обводкой, заливается синим 2.8s */
+.application-cta{position:relative;display:inline-flex;align-items:center;gap:12px;min-height:46px;padding:0 20px;border:none;border-radius:50px;background:transparent;color:var(--blue);font:400 13px/1.4 var(--head);text-decoration:none;margin-top:auto;width:fit-content;transition:background 2.8s cubic-bezier(.16,.65,.3,1),color 2.8s cubic-bezier(.16,.65,.3,1)}
+.application-cta::after{content:'';position:absolute;inset:0;border-radius:50px;border:1px solid #91c9ff;pointer-events:none}
+.application-cta:hover,.application-cta:focus-visible{background:var(--blue);color:#fff}
+.application-cta:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.application-cta svg{width:16px;height:16px;flex-shrink:0;position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.application-cta{transition:none}}
+.image-disclaimer{font-size:10px;line-height:1.5;color:var(--muted);margin:0}
+@media(max-width:1024px){
+  .applications-layout{grid-template-columns:1fr;align-items:start}
+  .sector-controls{grid-template-rows:none;grid-template-columns:repeat(2,1fr);gap:10px}
+  .sector-controls button{min-height:60px}
+  .application-panel{grid-template-columns:1fr;gap:16px;min-height:auto}
+  .application-photo{height:280px}
+}
+@media(max-width:640px){
+  .wrap{padding:32px clamp(16px,4vw,24px)}
+  .section-intro{margin:0 0 28px}
+  .sector-controls{grid-template-columns:1fr;gap:8px}
+  .sector-controls button{min-height:52px;padding:14px 16px;font-size:13px}
+  .application-panel{gap:12px}
+  .application-photo{height:220px}
+  .application-copy{padding:16px}
+  .application-copy h3{font-size:clamp(18px,1.8vw,22px)}
+  .application-description{font-size:12px}
+  .application-list{font-size:12px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section id="applications" aria-labelledby="applications-heading">
+<header class="section-intro">
+<p class="section-label">Отрасли применения</p>
+<h2 class="section-heading" id="applications-heading">Решения для <em>разных отраслей</em></h2>
+<p class="section-description">OTS разрабатывает решения для множества секторов — от укрепления зданий до высокоэффективного спортивного оборудования.</p>
+</header>
+<div class="applications-layout">
+<div class="sector-controls" role="group" aria-label="Выберите отрасль">
+<button type="button" data-sector="electronics" aria-pressed="true" aria-controls="application-panel">Электро направление</button>
+<button type="button" data-sector="construction" aria-pressed="false" aria-controls="application-panel">Строительство</button>
+<button type="button" data-sector="industry" aria-pressed="false" aria-controls="application-panel">Промышленность</button>
+<button type="button" data-sector="sport" aria-pressed="false" aria-controls="application-panel">Спорт</button>
+<button type="button" data-sector="research" aria-pressed="false" aria-controls="application-panel">НИОКР</button>
+</div>
+<article class="application-panel" id="application-panel" aria-labelledby="application-title">
+<div class="application-photo">
+<img id="application-image" src="assets/electronics-light.jpg" alt="Электронная плата и компоненты на светло-голубой рабочей поверхности" width="1400" height="933">
+<span class="photo-label" id="application-photo-label">Специальные свойства</span>
+<span class="photo-counter" id="application-counter" aria-hidden="true">01 / 05</span>
+</div>
+<div class="application-copy" aria-live="polite" aria-atomic="true">
+<p class="application-category" id="application-category">Диэлектрические свойства</p>
+<h3 id="application-title">Электро направление</h3>
+<p class="application-description" id="application-description">Составы для заливки компонентов, герметизации, защитных покрытий плат и корпусов, где важны диэлектрические характеристики и термостабильность материала.</p>
+<ul class="application-list" id="application-list"><li>Компаунды</li><li>Отвердители</li><li>Эпоксидные смолы</li></ul>
+<a class="application-cta" href="index.html#contact" id="application-cta" data-topic="Система для электроники">Обсудить применение<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+</article>
+</div>
+</section>
+</main>
+<script>
+const sectorData = {
+  construction: {
+    category: 'Долговечность в реальных условиях',
+    title: 'Гражданское<br>строительство',
+    description: 'Мы производим передовые эпоксидные системы, специально разработанные для строительной отрасли и критически важной инфраструктуры:',
+    list: ['Системы наружного усиления зданий и сооружений', 'Высокоэффективные гидроизоляционные решения', 'Долговечные, атмосферостойкие составы'],
+    photo: 'assets/construction-light.jpg',
+    photoAlt: 'Изогнутый фасад современного здания из голубого стекла на фоне неба',
+    photoLabel: 'Материалы для инфраструктуры',
+    counter: '02 / 05',
+    topic: 'Система для строительства'
+  },
+  industry: {
+    category: 'Высокоточные процессы',
+    title: 'Промышленность',
+    description: 'Проектирование и разработка композитных материалов на основе эпоксидных смол для высокотехнологного промышленного оборудования и автоматизированных систем.',
+    list: ['Композитные материалы для контейнеров МАДМ', 'Компоненты для куполов приёмников', 'Специализированные элементы док-станций'],
+    photo: 'assets/industry-light.jpg',
+    photoAlt: 'Автоматизированная производственная линия с белым оборудованием в цеху',
+    photoLabel: 'Промышленные объекты',
+    counter: '03 / 05',
+    topic: 'Система для промышленности'
+  },
+  sport: {
+    category: 'Лёгкость и прочность',
+    title: 'Спорт и композиты',
+    description: 'Высокоэффективные эпоксидные системы для спортивного оборудования и дизайнерских потребительских товаров с превосходным соотношением прочности к весу.',
+    list: ['Хоккейные клюшки и удочки', 'Ледорубы и дизайнерские ножи', 'Инфузионные системы для дизайнерских сноубордов'],
+    photo: 'assets/sport-light.jpg',
+    photoAlt: 'Бирюзовый шоссейный велосипед у светло-голубой стены',
+    photoLabel: 'Инновационные материалы',
+    counter: '04 / 05',
+    topic: 'Система для спортивных композитов'
+  },
+  electronics: {
+    category: 'Диэлектрические свойства',
+    title: 'Электро направление',
+    description: 'Составы для заливки компонентов, герметизации, защитных покрытий плат и корпусов, где важны диэлектрические характеристики и термостабильность материала.',
+    list: ['Компаунды', 'Отвердители', 'Эпоксидные смолы'],
+    photo: 'assets/electronics-light.jpg',
+    photoAlt: 'Электронная плата и компоненты на светло-голубой рабочей поверхности',
+    photoLabel: 'Специальные свойства',
+    counter: '01 / 05',
+    topic: 'Система для электроники'
+  },
+  research: {
+    category: 'Материалы нового поколения',
+    title: 'Текущие НИОКР',
+    description: 'Наш исследовательский отдел постоянно расширяет границы, разрабатывая композитные материалы нового поколения для перспективных рынков и применений.',
+    list: ['Разработка автомобильных композитных материалов', 'Композиты нового поколения для потребительских товаров', 'Передовые исследования в химии полимеров'],
+    photo: 'assets/research-light.jpg',
+    photoAlt: 'Лабораторные колбы с прозрачной жидкостью на светлой поверхности',
+    photoLabel: 'Исследования и разработки',
+    counter: '05 / 05',
+    topic: 'Система для НИОКР'
+  }
+};
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.from(document.querySelectorAll(s))}
+const sectorButtons=$$('[data-sector]');
+sectorButtons.forEach(btn=>btn.addEventListener('click',()=>{
+  const sector=btn.dataset.sector;
+  sectorButtons.forEach(b=>b.setAttribute('aria-pressed',b===btn));
+  const data=sectorData[sector];
+  $('#application-category').textContent=data.category;
+  $('#application-title').innerHTML=data.title;
+  $('#application-description').textContent=data.description;
+  const list=$('#application-list');
+  list.innerHTML=data.list.map(t=>`<li>${t}</li>`).join('');
+  const img=$('#application-image');
+  img.hidden=!data.photo;
+  if(data.photo){
+    img.src=data.photo;
+  }else{
+    img.removeAttribute('src');
+  }
+  img.alt=data.photoAlt;
+  $('#application-photo-label').textContent=data.photoLabel;
+  $('#application-counter').textContent=data.counter;
+  $('#application-cta').dataset.topic=data.topic;
+}));
+document.querySelector('[data-sector="construction"]').addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' ')e.currentTarget.click();
+  else if(e.key==='Tab'){
+    e.preventDefault();
+    const next=e.shiftKey?e.currentTarget.previousElementSibling:e.currentTarget.nextElementSibling;
+    if(next)next.focus();
+  }
+});
+sectorButtons.forEach((btn,i)=>{
+  if(i>0)btn.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' ')e.currentTarget.click();
+    else if(e.key==='Tab'){
+      e.preventDefault();
+      const next=e.shiftKey?sectorButtons[i-1]:sectorButtons[i+1];
+      if(next)next.focus();
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+# Секреты и локальные настройки
+.env
+.env.*
+*.env
+secrets/
+secrets.*
+credentials/
+credentials.*
+*.pem
+*.key
+*.p12
+*.pfx
+.claude/
+
+# Резервные копии
+Back up files/
+[Bb]ackup/
+[Bb]ackups/
+[Bb]ackup files/
+*.bak
+*.backup
+*.old
+*~
+*бэкап*
+
+# Кеши, журналы и результаты локальных проверок
+__pycache__/
+*.py[cod]
+.pytest_cache/
+checks/
+screenshots/
+playwright-report/
+test-results/
+*.log
+
+# Служебные файлы ОС
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Временные файлы Excel (файл-замок открытой книги)
+~$*

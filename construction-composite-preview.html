@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Усиление конструкции — OTS</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f2f6fa 0%, #dbeafe 100%);
+      font-family: Roboto, Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    svg {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      filter: drop-shadow(0 8px 32px rgba(36, 89, 237, 0.06));
+    }
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #4a86d8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(100deg, #2459ed 0%, #29a6ff 60%, #83d7ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 8px 16px;
+      border: 1px solid #d7e4f5;
+      border-radius: 6px;
+      background: #fdfeff;
+      color: #2459ed;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    button:hover {
+      background: #eaf3fd;
+      border-color: #2459ed;
+    }
+    button.active {
+      background: #2459ed;
+      color: #fff;
+      border-color: #2459ed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="text-align: center;">
+      <div class="label">Материал</div>
+      <div class="title">Слоистое усиление конструкции</div>
+    </div>
+
+    <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="baseFace" x1="0" y1="0" x2="1" y2="0.5">
+          <stop stop-color="#e8e9eb" stop-opacity="0.8"/>
+          <stop offset="0.3" stop-color="#c5cdd6" stop-opacity="0.6"/>
+          <stop offset="0.6" stop-color="#d8dce2" stop-opacity="0.7"/>
+          <stop offset="1" stop-color="#f0f1f2" stop-opacity="0.85"/>
+        </linearGradient>
+
+        <linearGradient id="layer1Face" x1="0" y1="0" x2="1" y2="0.4">
+          <stop stop-color="#e0e2e6" stop-opacity="0.7"/>
+          <stop offset="0.4" stop-color="#bac2cc" stop-opacity="0.5"/>
+          <stop offset="0.7" stop-color="#e8ebef" stop-opacity="0.65"/>
+          <stop offset="1" stop-color="#f2f3f5" stop-opacity="0.8"/>
+        </linearGradient>
+
+        <linearGradient id="layer2Face" x1="0" y1="0" x2="1" y2="0.3">
+          <stop stop-color="#dfe1e5" stop-opacity="0.65"/>
+          <stop offset="0.35" stop-color="#b0b8c3" stop-opacity="0.48"/>
+          <stop offset="0.65" stop-color="#e4e8ed" stop-opacity="0.6"/>
+          <stop offset="1" stop-color="#eff0f2" stop-opacity="0.75"/>
+        </linearGradient>
+
+        <linearGradient id="edgeBlue" x1="0" y1="0" x2="0.6" y2="1">
+          <stop stop-color="#b9d9ec"/>
+          <stop offset="0.35" stop-color="#6eb5e8"/>
+          <stop offset="0.65" stop-color="#8ebfe7"/>
+          <stop offset="1" stop-color="#d0dce8"/>
+        </linearGradient>
+
+        <linearGradient id="glint" x1="0" y1="0" x2="1" y2="1">
+          <stop stop-color="#fff" stop-opacity="0"/>
+          <stop offset="0.45" stop-color="#fff" stop-opacity="0.04"/>
+          <stop offset="0.5" stop-color="#fff" stop-opacity="0.45"/>
+          <stop offset="0.53" stop-color="#9faab8" stop-opacity="0.2"/>
+          <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- базовая плита (позади) -->
+      <g id="baseLayer" class="layer">
+        <polygon points="60,240 120,200 340,200 380,240 380,420 60,420" fill="url(#baseFace)" stroke="#d5dce4" stroke-width="1.5" opacity="0.9"/>
+        <polygon points="60,240 120,200 120,320 60,360" fill="#e8e9eb" stroke="#c5cdd6" stroke-width="1" opacity="0.6"/>
+        <polygon points="380,240 340,200 340,320 380,360" fill="#b9bfc8" stroke="#9099a8" stroke-width="1" opacity="0.5"/>
+        <polygon points="60,420 120,380 340,380 380,420" fill="#9aa3b0" stroke="#6e7784" stroke-width="1" opacity="0.4"/>
+        <!-- верхняя грань базы -->
+        <path d="M 120 200 L 340 200 L 340 320 L 120 320 Z" fill="none" stroke="#d9dfe6" stroke-width="1" opacity="0.3"/>
+      </g>
+
+      <!-- слой защитного покрытия 1 (средний) -->
+      <g id="layer1" class="layer" style="animation: slideIn 1.5s ease-out forwards;">
+        <polygon points="70,260 130,220 330,220 370,260 370,400 70,400" fill="url(#layer1Face)" stroke="#c5cdd6" stroke-width="1.5" opacity="0.75"/>
+        <polygon points="70,260 130,220 130,310 70,350" fill="#d8dce2" stroke="#b9c1ca" stroke-width="1" opacity="0.55"/>
+        <polygon points="370,260 330,220 330,310 370,350" fill="#a8aeb8" stroke="#8899aa" stroke-width="1" opacity="0.45"/>
+        <!-- грань голубого края -->
+        <path d="M 130 220 L 330 220 L 330 310 L 130 310 Z" fill="none" stroke="url(#edgeBlue)" stroke-width="3" opacity="0.6"/>
+        <!-- блик -->
+        <ellipse cx="200" cy="240" rx="80" ry="12" fill="url(#glint)" opacity="0.5"/>
+      </g>
+
+      <!-- слой защитного покрытия 2 (передний) -->
+      <g id="layer2" class="layer" style="animation: slideIn 2.2s ease-out forwards;">
+        <polygon points="80,290 140,250 320,250 360,290 360,380 80,380" fill="url(#layer2Face)" stroke="#b9c1ca" stroke-width="1.5" opacity="0.65"/>
+        <polygon points="80,290 140,250 140,300 80,340" fill="#cdd0d5" stroke="#aab4bf" stroke-width="1" opacity="0.5"/>
+        <polygon points="360,290 320,250 320,300 360,340" fill="#9aa1ac" stroke="#7a8595" stroke-width="1" opacity="0.4"/>
+        <!-- основной голубой край (видимая граница) -->
+        <path d="M 140 250 L 320 250 L 320 300 L 140 300 Z" fill="none" stroke="url(#edgeBlue)" stroke-width="4" opacity="0.75"/>
+        <!-- яркий блик на переднем слое -->
+        <ellipse cx="200" cy="265" rx="70" ry="10" fill="url(#glint)" opacity="0.6"/>
+      </g>
+
+      <!-- индикаторные стрелки между слоями -->
+      <g id="indicators" opacity="0.4" style="animation: fadeInDelayed 3s ease-out forwards;">
+        <line x1="40" y1="240" x2="50" y2="250" stroke="#83d7ff" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="50,250 48,245 54,248" fill="#83d7ff"/>
+
+        <line x1="40" y1="290" x2="50" y2="295" stroke="#83d7ff" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="50,295 48,290 54,293" fill="#83d7ff"/>
+      </g>
+
+      <!-- подпись слоёв -->
+      <text x="360" y="225" font-size="11" font-family="Roboto" fill="#5d6b76" opacity="0.6">защита</text>
+      <text x="360" y="265" font-size="11" font-family="Roboto" fill="#5d6b76" opacity="0.6">покрытие</text>
+      <text x="360" y="310" font-size="11" font-family="Roboto" fill="#5d6b76" opacity="0.6">усиление</text>
+    </svg>
+
+    <div class="controls">
+      <button id="playBtn" class="active" onclick="toggleAnimation()">Воспроизвести</button>
+      <button id="resetBtn" onclick="resetAnimation()">Сброс</button>
+    </div>
+  </div>
+
+  <style>
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDelayed {
+      from { opacity: 0; }
+      to { opacity: 0.4; }
+    }
+
+    .layer {
+      transform-origin: 200px 300px;
+    }
+
+    svg.paused .layer {
+      animation-play-state: paused !important;
+    }
+  </style>
+
+  <script>
+    let isPlaying = true;
+    const svg = document.querySelector('svg');
+    const playBtn = document.getElementById('playBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function toggleAnimation() {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        svg.classList.remove('paused');
+        playBtn.classList.add('active');
+        playBtn.textContent = 'Пауза';
+      } else {
+        svg.classList.add('paused');
+        playBtn.classList.remove('active');
+        playBtn.textContent = 'Воспроизвести';
+      }
+    }
+
+    function resetAnimation() {
+      svg.style.animation = 'none';
+      void svg.offsetHeight;
+      svg.style.animation = '';
+      isPlaying = true;
+      svg.classList.remove('paused');
+      playBtn.classList.add('active');
+      playBtn.textContent = 'Пауза';
+    }
+  </script>
+</body>
+</html>

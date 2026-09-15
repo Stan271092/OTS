@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 150" role="img" aria-labelledby="title desc">
+  <title id="title">OTS — геометрический знак</title>
+  <desc id="desc">Фасеточный шестигранный знак с тонким графитовым контуром, синей правой гранью и тёмной нижней гранью.</desc>
+  <path d="M34 18H92L127 43L171 33L196 76L167 126H106L57 99L34 61Z" fill="#FFFFFF" stroke="#27313B" stroke-width="3.2" stroke-linejoin="round"/>
+  <path d="M127 43L171 33L196 76L127 100Z" fill="#4B72B8"/>
+  <path d="M127 100L188 101L167 126H106Z" fill="#27313B"/>
+  <g fill="none" stroke="#27313B" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M92 18V63L127 100"/>
+    <path d="M127 43L69 63"/>
+    <path d="M127 100L188 101"/>
+    <path d="M127 100L78 127"/>
+    <path d="M127 100L156 50"/>
+  </g>
+</svg>

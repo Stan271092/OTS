@@ -1,0 +1,15 @@
+@import url('../style.css');
+/* Keep the website quiet: the material is the only visual experiment. */
+.hero{--bg:#eef1f3;grid-template-columns:39% 61%}
+.copy{padding-left:40px;padding-right:10px}
+h1{font-size:clamp(43px,4.6vw,65px);line-height:1.04}
+.description{font-size:15px;max-width:290px}
+.reference-link{display:inline-block;margin-top:18px;font-size:12px;text-underline-offset:4px;color:var(--muted)}
+.reference{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;margin-bottom:44px}
+.reference img{display:block;width:100%;max-width:530px;border-radius:12px}
+.reference p{max-width:410px;color:#607389;font-size:14px}
+.reference h2{font-size:30px;line-height:1.15;letter-spacing:-.035em;font-weight:600}
+.notice{background:#e4ebef;border-color:#ccd8e1;color:#496074}
+.visual canvas,.visual canvas:active{cursor:default;touch-action:pan-y}
+@media(max-width:1000px){.copy{padding-left:26px}h1{font-size:49px}}
+@media(max-width:700px){.hero{display:flex}.copy{padding:30px 25px 0}h1{font-size:clamp(42px,11vw,60px)}.reference{grid-template-columns:1fr;gap:16px}.reference h2{font-size:27px}.pause{min-width:130px}.visual{height:470px;min-height:470px}}

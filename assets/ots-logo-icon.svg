@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="704" height="464" viewBox="0 0 704 464" role="img" aria-labelledby="title desc">
+  <title id="title">OTS — геометрическая иконка (тёмная версия)</title>
+  <desc id="desc">Точная копия референса: шестиугольник из девяти внутренних линий с синей нижней правой гранью на чёрном фоне. Координаты получены PCA-аппроксимацией осевых линий референса.</desc>
+
+  <rect id="background" width="704" height="464" fill="#000000"/>
+
+  <!-- Тело знака: шестиугольник с плоскими верхней и нижней гранями -->
+  <path id="hexagon-body"
+        d="M285 24 H533 L649 230 L530 440 H288 L167 232 Z"
+        fill="#000000"/>
+
+  <!-- Единственная цветная грань: нижняя правая (узел J2 → A → правая вершина → правый нижний угол) -->
+  <path id="blue-facet"
+        d="M368 302 L488 230 H649 L530 440 Z"
+        fill="#375F97"/>
+
+  <!-- Внешний контур -->
+  <path id="outer-contour"
+        d="M285 24 H533 L649 230 L530 440 H288 L167 232 Z"
+        fill="none"
+        stroke="#2C2C2C"
+        stroke-width="24"
+        stroke-linejoin="round"
+        stroke-linecap="round"/>
+
+  <!-- Внутренние линии (осевые, извлечены из референса) -->
+  <g id="internal-lines"
+     fill="none"
+     stroke="#2C2C2C"
+     stroke-width="24"
+     stroke-linejoin="round"
+     stroke-linecap="round">
+    <path id="top-left-to-junction" d="M285 24 L368 165"/>
+    <path id="top-right-to-A" d="M533 24 L488 230"/>
+    <path id="junction-to-left-vertex" d="M368 165 L167 232"/>
+    <path id="central-vertical" d="M368 165 V302"/>
+    <path id="junction-to-A" d="M368 165 L488 230"/>
+    <path id="blue-top-edge" d="M488 230 H649"/>
+    <path id="blue-left-edge" d="M368 302 L488 230"/>
+    <path id="bottom-to-left-corner" d="M368 302 L288 440"/>
+    <path id="blue-bottom-edge" d="M368 302 L530 440"/>
+  </g>
+</svg>
