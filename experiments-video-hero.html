@@ -247,13 +247,23 @@
       display: block;
     }
     .hero-art .hero-stage iframe { display: none; }
+    /* эксперимент: видео/изображение в окошке hero — целиком, без обрезки */
+    .hero-art video.hero-video,
+    .hero-art img.hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: 50% 50%;
+    }
     .hero-art img.hero-ribbon {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 40%;
+      object-position: 50% 50%;
     }
     .hero-art .hero-visual-count {
       position: absolute;
@@ -550,32 +560,40 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .sec-wrap.sec-about{max-width:1480px;padding:0 28px 24px;margin-top:24px}
 /* светлый сине-голубой градиент (тип hero-note, светлый вариант): контраст
    между секциями вместо цепочки одинаковых белых карточек */
-/* «редакторская» карточка: чистый белый фон, но характер дают детали —
-   вторая тонкая рамка внутри (outline с отступом) и градиентная засечка
-   в левом верхнем углу (::before — короткий толстый штрих) + мягкая тень */
-.about-card{background:#dcecff;border:1px solid #c9e1fa;border-radius:28px;padding:clamp(18px,2.6vw,34px)}
+/* гексагональная сетка-водяной знак: узор из гексагонов (как иконка логотипа ОТР)
+   тонкими контурами, крупный в углу и гаснущий к середине карточки.
+   SVG в data-URI, поверх — белая линейная маска-затемнение к центру */
+.about-card{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='97' viewBox='0 0 112 97'%3E%3Cpath d='M28 0 56 16v33L28 65 0 49V16zM84 0l28 16v33l-28 16-28-16V16zM28 65l28 16v33L28 130 0 114V81zM84 65l28 16v33l-28 16-28-16V81z' fill='none' stroke='%23a8c8ee' stroke-width='1'/%3E%3C/svg%3E") repeat -56px -32px,
+  linear-gradient(120deg, #ffffff 42%, #f2f8fe 72%, #e3eefa 100%);
+border:1px solid #d7e4f5;border-radius:28px;padding:clamp(18px,2.6vw,34px);position:relative;overflow:hidden}
+/* текст и контент поверх узора, узор приглушён градиентом сверху */
+.about-card > *{position:relative}
 /* специфичность как у соседних секций: перебиваем .section-intro из styles.css */
 .about-card .section-intro{display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:0;margin:0 0 28px}
 .about-card .section-label{font-family:var(--head);font-size:12px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:#4c5d78;margin:0 0 20px}
 .about-card .section-heading{margin:0 0 20px;font-family:var(--head);font-weight:500;font-size:clamp(26px,2.6vw,40px);line-height:1.08;letter-spacing:.01em;color:#1d3a68}
 .about-card .section-heading em{font-style:normal;color:#4a86d8}
 .about-lead{margin:0 0 26px;max-width:880px;font-family:var(--head);font-size:13.5px;line-height:1.65;color:#3d5070}
-/* bento-сетка: слева синяя карточка + фото, справа две светлые плитки в ряд.
-   Компактно: высота = одна строка, а не две */
+/* bento-сетка: 1 синяя карточка + 2 светлые плитки */
 .about-bento{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;align-items:stretch}
-.about-col{display:flex;flex-direction:column;gap:14px}
-.about-tile{min-width:0;background:#fff;border:1px solid #d7e4f5;border-radius:24px;padding:24px 26px}
-/* синяя карточка ATUL — язык hero-note (плашка «Каталог»): градиент, чипы индустрий */
-/* левая колонка бенто: компактная синяя карточка + фото-прямоугольник снизу */
-.about-atul{display:flex;flex-direction:column;gap:10px;padding:22px 26px;border-radius:24px;background:linear-gradient(150deg,#7ab6ee 0%,#407edc 100%);color:#fff;text-decoration:none}
+/* синяя карточка ATUL — язык hero-note (плашка «Каталог»): градиент,
+   вырез угла с круглой кнопкой-стрелкой, чипы индустрий белым по контуру */
+.about-atul{position:relative;display:flex;flex-direction:column;gap:12px;padding:26px 28px;border-radius:24px;background:linear-gradient(150deg,#7ab6ee 0%,#407edc 100%);color:#fff;text-decoration:none;min-height:300px}
 .about-atul-label{margin:0;font-family:var(--head);font-weight:500;font-size:11px;line-height:1.4;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .about-atul h3{margin:0;font-family:var(--head);font-weight:500;font-size:26px;line-height:1.1;letter-spacing:.01em;color:#fff}
-.about-atul .about-chips{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}
+.about-atul > p{margin:0;font-family:var(--head);font-size:13px;line-height:1.6;color:rgba(255,255,255,.85);max-width:330px}
+.about-atul .about-chips{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;padding-right:70px}
 .about-atul .about-chips span{padding:6px 13px;border-radius:50px;border:1px solid rgba(255,255,255,.4);font-family:var(--head);font-weight:500;font-size:11.5px;line-height:1.4;color:#fff;white-space:nowrap}
-/* фото-прямоугольник — небольшой, высота ряда бенто задаётся плитками */
-.about-photo{flex:none;height:110px;border-radius:24px;overflow:hidden;border:1px solid #d7e4f5;background:#eaf3fd}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+/* вырез угла + круг — как у hero-note, заливка белая (фон карточки секции) */
+.about-corner{position:absolute;right:-1px;bottom:-1px;width:75px;height:75px;pointer-events:none}
+.about-corner-stroke{position:absolute;top:-26px;left:-26px;width:127px;height:127px}
+/* круг на вырезе — как в hero-note: синяя обводка и стрелка (белый на белом
+   вырезе не виден), при наведении заливается синим, стрелка белеет */
+.about-circle{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#4784de;border:1px solid #4784de;background:transparent;transition:color .5s ease,background .5s ease,border-color .5s ease}
+.about-atul:hover .about-circle{background:#4480dd;color:#fff;border-color:transparent}
 /* светлые плитки — подложка .catalog-panel с заголовком */
+.about-tile{background:#f8fbfe;border:1px solid #d7e4f5;border-radius:24px;padding:24px 26px}
 .about-tile h3{margin:0 0 10px;font-family:var(--head);font-weight:500;font-size:18px;line-height:1.2;letter-spacing:.01em;color:#1d3a68}
 .about-tile p{margin:0 0 12px;font-family:var(--head);font-size:12.5px;line-height:1.6;color:#3d5070}
 .about-list{margin:0;padding:0;list-style:none}
@@ -584,12 +602,14 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .about-note{margin:22px 0 0;font-family:var(--head);font-size:13px;line-height:1.6;color:#3d5070}
 .about-note a{color:#3a9df0;font-weight:500;text-decoration:none;border-bottom:1px solid rgba(58,157,240,.35)}
 .about-note a:hover{color:#2459ed;border-bottom-color:#2459ed}
-@media (max-width:1100px){.about-bento{grid-template-columns:1fr 1fr}.about-col{grid-column:1/-1;grid-row:auto}.about-tile{grid-column:auto}.about-photo{flex:none;height:150px}}
-@media (max-width:700px){.about-bento{grid-template-columns:1fr}}
+@media (max-width:1100px){.about-bento{grid-template-columns:1fr 1fr}.about-atul{grid-column:1/-1;min-height:0}}
+@media (max-width:700px){.about-bento{grid-template-columns:1fr}.about-atul .about-chips{padding-right:0}}
 
 .sec-wrap.sec-applications{max-width:1480px;padding:0 28px 24px}
-/* та же редакторская система, но засечка у «Отраслей» — с правого края */
-.applications-card{background:#dcecff;border:1px solid #c9e1fa;border-radius:28px;padding:clamp(18px,2.6vw,34px)}
+.applications-card{background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='97' viewBox='0 0 112 97'%3E%3Cpath d='M28 0 56 16v33L28 65 0 49V16zM84 0l28 16v33l-28 16-28-16V16zM28 65l28 16v33L28 130 0 114V81zM84 65l28 16v33l-28 16-28-16V81z' fill='none' stroke='%23a8c8ee' stroke-width='1'/%3E%3C/svg%3E") repeat calc(100% + 56px) -32px,
+  linear-gradient(240deg, #ffffff 42%, #f2f8fe 72%, #e3eefa 100%);
+border:1px solid #d7e4f5;border-radius:28px;padding:clamp(18px,2.6vw,34px);position:relative;overflow:hidden}
 /* специфичность .applications-card .section-intro выше, чем .section-intro
    из styles.css (flex space-between гнал label вправо, заголовок в центр,
    описание вправо) — повторяем левую колонку как в шапке services */
@@ -778,8 +798,10 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 
 /* ===== Футер ===== */
 .site-footer{max-width:1480px;margin:0 auto;padding:0 28px 28px}
-/* футер: та же система, засечка снизу — замыкает композицию */
-.footer-inner{display:grid;grid-template-columns:1fr auto auto;gap:clamp(28px,4vw,70px);align-items:start;background:#dcecff;border:1px solid #c9e1fa;border-radius:28px;padding:clamp(18px,2.6vw,34px)}
+.footer-inner{display:grid;grid-template-columns:1fr auto auto;gap:clamp(28px,4vw,70px);align-items:start;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='97' viewBox='0 0 112 97'%3E%3Cpath d='M28 0 56 16v33L28 65 0 49V16zM84 0l28 16v33l-28 16-28-16V16zM28 65l28 16v33L28 130 0 114V81zM84 65l28 16v33l-28 16-28-16V81z' fill='none' stroke='%23a8c8ee' stroke-width='1'/%3E%3C/svg%3E") repeat calc(100% + 56px) calc(100% + 32px),
+  linear-gradient(300deg, #ffffff 42%, #f2f8fe 72%, #e3eefa 100%);
+border:1px solid #d7e4f5;border-radius:28px;padding:clamp(18px,2.6vw,34px);position:relative;overflow:hidden}
 .footer-brand .logo{width:82px;height:57px;object-fit:contain;display:block}
 .footer-tagline{margin:14px 0 0;font:400 13px/1.5 var(--head);color:#3d5070}
 .footer-nav,.footer-contacts{display:flex;flex-direction:column;gap:12px}
@@ -823,8 +845,9 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
         </div>
 
         <div class="hero-art">
-          <div class="hero-stage" aria-label="Светлая композиция из прозрачных капель и гелевых сфер">
-            <img class="hero-ribbon" src="aipool-1789530996542.png" alt="Стеклянная сфера с композиционным наполнением на фоне неба">
+          <div class="hero-stage" aria-label="Видео: прозрачные капли и пузыри с синей жидкостью на светлом фоне">
+            <!-- активен сток с watermark; наш рендер без вотермарки — assets/hero-bubbles-loop.mp4 -->
+<img class="hero-video" src="сфера.png" alt="Стеклянная сфера с компаундом">
             <span class="hero-visual-count">MATERIAL / 01</span>
           </div>
           <div class="hero-material-caption"><p>Идеальная комбинация<br>для вашего проекта</p><a href="#applications">Посмотреть отрасли применения</a></div>
@@ -849,20 +872,19 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
             <p class="about-lead">Компания ОТР (Россия) эксклюзивно представляет в России компаунды производства ATUL (Индия) — мирового лидера компаундов, отвердителей и эпоксидных смол.</p>
           </header>
           <div class="about-bento">
-            <div class="about-col">
-              <a class="about-atul" href="#catalog">
-                <p class="about-atul-label">Мировой лидер</p>
-                <h3>Компаунды ATUL</h3>
-                <div class="about-chips">
-                  <span>Авиация и космос</span>
-                  <span>Электроника</span>
-                  <span>Электротехника</span>
-                  <span>Ветроэнергетика</span>
-                  <span>Судостроение</span>
-                </div>
-              </a>
-              <div class="about-photo"><img src="f04ef73eebfe9fbd46ef67dfff1c865d.jpg" alt="Молекулярная структура эпоксидного компаунда" loading="lazy"></div>
-            </div>
+            <a class="about-atul" href="#catalog">
+              <p class="about-atul-label">Мировой лидер</p>
+              <h3>Компаунды ATUL</h3>
+              <p>Отвердители и эпоксидные смолы для самых требовательных отраслей.</p>
+              <div class="about-chips">
+                <span>Авиация и космос</span>
+                <span>Электроника</span>
+                <span>Электротехника</span>
+                <span>Ветроэнергетика</span>
+                <span>Судостроение</span>
+              </div>
+              <div class="about-corner" aria-hidden="true"><svg class="about-corner-stroke" viewBox="0 0 127 127"><path d="M99.5 0V10A16 16 0 0 1 83.5 26H56A30 30 0 0 0 26 56V83.5A16 16 0 0 1 10 99.5H0V101H101V0Z" fill="#ffffff"/><path d="M99.5 0V10A16 16 0 0 1 83.5 26H56A30 30 0 0 0 26 56V83.5A16 16 0 0 1 10 99.5H0" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1"/></svg><span class="about-circle"><svg class="icon"><use href="#i-diagonal"/></svg></span></div>
+            </a>
             <div class="about-tile">
               <h3>Отличие от аналогов</h3>
               <p>Высокие диэлектрические и термические свойства — в отличие от китайских аналогов. Применяются в производстве:</p>
