@@ -294,6 +294,7 @@
     .hero-art .hero-corner { z-index: 2; }
     @media (max-width: 700px) {
       .hero-art { padding: 10px 10px 0; }
+      .hero-art .hero-stage { min-height: 300px; }
       .hero-art .hero-material-caption { padding: 18px 22px 26px; }
     }
 
@@ -665,6 +666,7 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .image-disclaimer{font-size:10px;line-height:1.5;color:var(--muted);margin:0}
 @media(max-width:1024px){
   .applications-layout{grid-template-columns:1fr;align-items:start}
+  .application-panel{height:auto}
   .sector-controls{grid-template-rows:none;grid-template-columns:repeat(2,1fr);gap:10px}
   .sector-controls button{min-height:60px}
   .application-panel{grid-template-columns:1fr;gap:16px;min-height:auto}
@@ -791,6 +793,21 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
   .contact-card{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr;gap:24px}
 }
+@media(max-width:640px){
+  .contact-line{font-size:17px;padding:12px 14px;gap:10px;max-width:100%;min-width:0}
+  .contact-line .contact-text{min-width:0;overflow-wrap:anywhere}
+  .catalog-category-head{flex-direction:column;align-items:flex-start;gap:0}
+  .catalog-download{margin-top:8px}
+  .hero-bento .hero-art{overflow:hidden}
+}
+@media(max-width:360px){
+  .site-header.hero-preview-header{margin-left:12px;margin-right:12px;padding:0 10px;gap:7px}
+  .site-header .hero-preview-brand .logo{width:50px;height:36px}
+  .site-header .lang{gap:4px;font-size:11px}
+  .site-header .lang .flag{width:17px;height:12px}
+  .site-header .phone{font-size:9px;height:34px;padding:0 9px}
+  .site-header .phone .arr{font-size:11px;margin-left:4px}
+}
   </style>
   <script src="embed-host.js" defer></script>
 </head>
@@ -845,14 +862,13 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
         <div class="about-card">
           <header class="section-intro">
             <p class="section-label">О компании</p>
-            <h2 class="section-heading" id="about-heading">Эксклюзивный партнёр <em>ATUL</em> в России</h2>
-            <p class="about-lead">Компания ОТР (Россия) эксклюзивно представляет в России компаунды производства ATUL (Индия) — мирового лидера компаундов, отвердителей и эпоксидных смол.</p>
+            <h2 class="section-heading" id="about-heading">Продукты из <em>Индии</em></h2>
+            <p class="about-lead">Компаунды, отвердители и эпоксидные смолы производятся на предприятиях ATUL в Индии. ОТР помогает подобрать подходящие системы и сопровождает их применение в российских проектах.</p>
           </header>
           <div class="about-bento">
             <div class="about-col">
               <a class="about-atul" href="#catalog">
-                <p class="about-atul-label">Мировой лидер</p>
-                <h3>Компаунды ATUL</h3>
+                <h3>Компаунды от мирового лидера</h3>
                 <div class="about-chips">
                   <span>Авиация и космос</span>
                   <span>Электроника</span>
