@@ -227,14 +227,72 @@
     .site-header .phone:focus-visible::before { opacity: 0; }
     .site-header .phone .arr { font-size: 14px; font-weight: 400; margin-left: 8px; font-style: normal; }
     @media (prefers-reduced-motion: reduce) { .site-header .phone, .site-header .phone::after { transition: none; } }
+    /* — бургер-меню: показывается только на мобильных, nav превращается в выпадающую панель — */
+    .header-burger {
+      display: none;
+      position: relative;
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      flex: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0;
+      border: 1px solid #e2e8ee;
+      border-radius: 12px;
+      background: #fff;
+      cursor: pointer;
+    }
+    .header-burger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: #1b2f4a;
+      transition: transform .3s ease, opacity .3s ease;
+    }
     @media (max-width: 820px) {
       .site-header.hero-preview-header { gap: 12px; padding: 0 16px; }
-      .site-header .hero-preview-nav { display: none; }
-      .site-header .lang { margin-left: auto; }
+      .header-burger { display: flex; }
+      .site-header .lang { margin-left: auto; flex: none; }
       .site-header .phone { font-size: 10px; height: 38px; padding: 0 14px; }
       .hero-preview-brand { flex: none; min-width: 0; }
       .hero-preview-brand .logo { width: 56px; height: 40px; }
+      /* nav: по умолчанию скрыт, при .nav-open на header — выпадающая панель под шапкой */
+      .site-header .hero-preview-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 2px;
+        margin: 0;
+        padding: 8px;
+        background: #fff;
+        border: 1px solid #e2e8ee;
+        border-radius: 18px;
+        box-shadow: 0 12px 28px -8px rgba(90, 115, 140, .25);
+      }
+      .site-header.nav-open .hero-preview-nav { display: flex; }
+      .site-header .hero-preview-nav a {
+        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 14px;
+        white-space: normal;
+      }
+      .site-header .hero-preview-nav a:hover,
+      .site-header .hero-preview-nav a:focus-visible { background: #eef4fd; font-weight: 500; }
+      /* крестики-полоски бургера в открытом состоянии */
+      .site-header.nav-open .header-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .site-header.nav-open .header-burger span:nth-child(2) { opacity: 0; }
+      .site-header.nav-open .header-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     }
+    /* — выравнивание по ширине на мобильных: hero-контент в 12px от края,
+       header уже выровнен выше; секции — в конце файла, после их базовых правил — */
 
     /* Лента в скруглённом окошке с отступом от краёв карточки, подпись — под окошком */
     .hero-art .hero-stage {
@@ -532,11 +590,20 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .page-row{display:flex;flex-direction:column;min-height:0}
 .side-copy{width:100%;min-height:0;position:static;padding:24px 22px}
 .side-heading{white-space:normal}
-.tabs{flex-direction:column;height:auto}
-.tab{flex:none;min-height:76px}
-.tab.open{flex-grow:1}
-.tab-side{position:absolute;left:24px;bottom:18px}
-.tab-body{position:relative;left:auto;right:auto;bottom:auto;width:auto;padding:16px 22px;opacity:1}
+.tabs{flex-direction:column;height:auto;gap:10px}
+/* мобильный аккордеон: закрытый таб — компактная полоса «номер + заголовок»,
+   раскрытый — тот же номер сверху + текст; графика скрыта (мешала читать),
+   раскрытие работает по тапу (JS ниже слушает click) */
+.tab{flex:none;min-height:58px}
+.tab-art{display:none}
+.tab:not(.open) .tab-body{display:none}
+.tab-num{position:absolute;left:20px;top:50%;transform:translateY(-50%);
+font-size:20px;font-weight:500;letter-spacing:.08em;color:#fff;text-shadow:none;transition:none}
+.tab.open .tab-num{top:16px;transform:none;color:#29a6ff}
+.tab-side{position:absolute;left:58px;right:16px;top:50%;bottom:auto;height:auto;
+transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
+.tab.open .tab-side{display:none}
+.tab-body{position:relative;left:auto;right:auto;bottom:auto;width:auto;padding:48px 20px 16px;opacity:1;visibility:visible}
 }
 
 
@@ -737,7 +804,14 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .catalog-download:hover,.catalog-download:focus-visible{color:#3a9df0}
 .catalog-download:hover::before,.catalog-download:focus-visible::before{opacity:0}
 .catalog-download svg{width:16px;height:16px;flex:none;position:relative;z-index:2}
-@media (max-width:820px){.catalog-panel{padding:18px 16px}.catalog-controls button{padding:11px 16px;font-size:13px}}
+@media (max-width:820px){
+.catalog-panel{padding:18px 16px}
+.catalog-controls button{padding:11px 16px;font-size:13px}
+/* табы каталога — один ряд с горизонтальным свайпом, без переноса */
+.catalog-controls{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-snap-type:x proximity}
+.catalog-controls::-webkit-scrollbar{display:none}
+.catalog-controls button{flex:none;white-space:nowrap;scroll-snap-align:start}
+}
 .sec-wrap.sec-contact{max-width:1480px;padding:0 28px 24px}
 /* верхний отступ футера — тоже 24px, как между остальными секциями */
 .site-footer{padding-top:24px}
@@ -808,6 +882,17 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
   .site-header .phone{font-size:9px;height:34px;padding:0 9px}
   .site-header .phone .arr{font-size:11px;margin-left:4px}
 }
+  /* — выравнивание по ширине на мобильных: hero-контент в 12px от края,
+     header и все секции приводим к той же сетке (в конце CSS, чтобы перебить
+     базовые padding-правила секций) — */
+  @media (max-width: 700px) {
+    .site-header.hero-preview-header { margin-left: 12px; margin-right: 12px; }
+    .sec-wrap.sec-about,
+    .sec-wrap.sec-services,
+    .sec-wrap.sec-applications,
+    .sec-wrap.sec-catalog,
+    .sec-wrap.sec-contact { padding-left: 12px; padding-right: 12px; }
+  }
   </style>
   <script src="embed-host.js" defer></script>
 </head>
@@ -825,6 +910,7 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
       </a>
       <nav class="nav hero-preview-nav" id="site-nav" aria-label="Основная навигации"><a href="#about" data-t="О компании">О компании</a><a href="#services" data-t="Сферы деятельности">Сферы деятельности</a><a href="#applications" data-t="Отрасли применения">Отрасли применения</a><a href="#catalog" data-t="Каталог">Каталог</a><a href="#contact" data-t="Контакты">Контакты</a></nav>
       <span class="lang" aria-label="Русский язык"><span class="flag"><i></i><i></i><i></i></span>RU</span>
+      <button class="header-burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span><span></span><span></span></button>
       <a class="phone" href="tel:+79636553780">+7 (963) 655-37-80</a>
     </header>
 
@@ -1298,7 +1384,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 var tabs = document.querySelectorAll('.tab');
 var CLOSE_MS = 1000; // столько же, сколько transition flex-grow
 tabs.forEach(function(tab){
-tab.addEventListener('mouseenter', function(){
+var activate = function(){
 tabs.forEach(function(t){
 if (t === tab) return;
 if (t.classList.contains('open')) {
@@ -1311,7 +1397,33 @@ t._ct = setTimeout(function(){ t.classList.remove('closing'); }, CLOSE_MS);
 tab.classList.remove('closing');
 clearTimeout(tab._ct);
 tab.classList.add('open');
+};
+tab.addEventListener('mouseenter', activate);
+// тач-устройства: ховера нет — раскрываем по тапу
+tab.addEventListener('click', activate);
 });
+})();
+</script>
+<script>
+// Бургер-меню (мобильные): toggle панели навигации под шапкой,
+// закрытие — по ссылке, по тапу вне шапки, по Esc
+(function(){
+var header = document.querySelector('.site-header.hero-preview-header');
+var burger = header && header.querySelector('.header-burger');
+if (!burger) return;
+function setOpen(open){
+header.classList.toggle('nav-open', open);
+burger.setAttribute('aria-expanded', String(open));
+}
+burger.addEventListener('click', function(){ setOpen(!header.classList.contains('nav-open')); });
+header.querySelectorAll('.hero-preview-nav a').forEach(function(a){
+a.addEventListener('click', function(){ setOpen(false); });
+});
+document.addEventListener('click', function(e){
+if (header.classList.contains('nav-open') && !header.contains(e.target)) setOpen(false);
+});
+document.addEventListener('keydown', function(e){
+if (e.key === 'Escape') setOpen(false);
 });
 })();
 </script>

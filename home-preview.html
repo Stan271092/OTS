@@ -153,6 +153,7 @@
     }
     .site-header .hero-preview-nav a:hover,
     .site-header .hero-preview-nav a:focus-visible { background: transparent; border: none; color: #4784de; font-weight: 700; }
+    .site-header .hero-preview-nav .mobile-menu-phone { display: none; }
     .site-header .lang {
       display: inline-flex;
       align-items: center;
@@ -227,14 +228,86 @@
     .site-header .phone:focus-visible::before { opacity: 0; }
     .site-header .phone .arr { font-size: 14px; font-weight: 400; margin-left: 8px; font-style: normal; }
     @media (prefers-reduced-motion: reduce) { .site-header .phone, .site-header .phone::after { transition: none; } }
+    /* — бургер-меню: показывается только на мобильных, nav превращается в выпадающую панель — */
+    .header-burger {
+      display: none;
+      position: relative;
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      flex: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 0;
+      border: 1px solid #e2e8ee;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+    }
+    .header-burger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: #1b2f4a;
+      transition: transform .3s ease, opacity .3s ease;
+    }
     @media (max-width: 820px) {
       .site-header.hero-preview-header { gap: 12px; padding: 0 16px; }
-      .site-header .hero-preview-nav { display: none; }
-      .site-header .lang { margin-left: auto; }
-      .site-header .phone { font-size: 10px; height: 38px; padding: 0 14px; }
+      .header-burger { display: flex; }
+      .site-header .lang { margin-left: auto; flex: none; }
+      .site-header > .phone { display: none; }
       .hero-preview-brand { flex: none; min-width: 0; }
       .hero-preview-brand .logo { width: 56px; height: 40px; }
+      /* nav: по умолчанию скрыт, при .nav-open на header — выпадающая панель под шапкой */
+      .site-header .hero-preview-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 2px;
+        margin: 0;
+        padding: 8px;
+        background: #fff;
+        border: 1px solid #e2e8ee;
+        border-radius: 18px;
+        box-shadow: 0 12px 28px -8px rgba(90, 115, 140, .25);
+      }
+      .site-header.nav-open .hero-preview-nav { display: flex; }
+      .site-header .hero-preview-nav a {
+        align-items: flex-start;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 14px;
+        white-space: normal;
+      }
+      .site-header .hero-preview-nav a:hover,
+      .site-header .hero-preview-nav a:focus-visible { background: #eef4fd; font-weight: 500; }
+      .site-header .hero-preview-nav .mobile-menu-phone {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        margin: 8px 4px 4px;
+        padding: 0 16px;
+        border-radius: 50px;
+        background: #3a9df0;
+        color: #fff;
+        font-weight: 500;
+      }
+      .site-header .hero-preview-nav .mobile-menu-phone:hover,
+      .site-header .hero-preview-nav .mobile-menu-phone:focus-visible { background: #3a9df0; color: #fff; }
+      /* крестики-полоски бургера в открытом состоянии */
+      .site-header.nav-open .header-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .site-header.nav-open .header-burger span:nth-child(2) { opacity: 0; }
+      .site-header.nav-open .header-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
     }
+    /* — выравнивание по ширине на мобильных: hero-контент в 12px от края,
+       header уже выровнен выше; секции — в конце файла, после их базовых правил — */
 
     /* Лента в скруглённом окошке с отступом от краёв карточки, подпись — под окошком */
     .hero-art .hero-stage {
@@ -532,11 +605,20 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .page-row{display:flex;flex-direction:column;min-height:0}
 .side-copy{width:100%;min-height:0;position:static;padding:24px 22px}
 .side-heading{white-space:normal}
-.tabs{flex-direction:column;height:auto}
-.tab{flex:none;min-height:76px}
-.tab.open{flex-grow:1}
-.tab-side{position:absolute;left:24px;bottom:18px}
-.tab-body{position:relative;left:auto;right:auto;bottom:auto;width:auto;padding:16px 22px;opacity:1}
+.tabs{flex-direction:column;height:auto;gap:10px}
+/* мобильный аккордеон: закрытый таб — компактная полоса «номер + заголовок»,
+   раскрытый — тот же номер сверху + текст; графика скрыта (мешала читать),
+   раскрытие работает по тапу (JS ниже слушает click) */
+.tab{flex:none;min-height:58px}
+.tab-art{display:none}
+.tab:not(.open) .tab-body{display:none}
+.tab-num{position:absolute;left:20px;top:50%;transform:translateY(-50%);
+font-size:20px;font-weight:500;letter-spacing:.08em;color:#fff;text-shadow:none;transition:none}
+.tab.open .tab-num{top:16px;transform:none;color:#29a6ff}
+.tab-side{position:absolute;left:58px;right:16px;top:50%;bottom:auto;height:auto;
+transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
+.tab.open .tab-side{display:none}
+.tab-body{position:relative;left:auto;right:auto;bottom:auto;width:auto;padding:48px 20px 16px;opacity:1;visibility:visible}
 }
 
 
@@ -561,21 +643,25 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .about-card .section-heading{margin:0 0 20px;font-family:var(--head);font-weight:500;font-size:clamp(26px,2.6vw,40px);line-height:1.08;letter-spacing:.01em;color:#1d3a68}
 .about-card .section-heading em{font-style:normal;color:#4a86d8}
 .about-lead{margin:0 0 26px;max-width:880px;font-family:var(--head);font-size:13.5px;line-height:1.65;color:#3d5070}
-/* bento-сетка: слева синяя карточка + фото, справа две светлые плитки в ряд.
-   Компактно: высота = одна строка, а не две */
-.about-bento{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;align-items:stretch}
-.about-col{display:flex;flex-direction:column;gap:14px}
+/* bento-сетка по эталону Group 136: плитка | изображение | плитка.
+   Высота ряда = прежняя компактная высота плиток (269px), изображение
+   растягивается на ту же высоту */
+.about-bento{display:grid;grid-template-columns:1fr 1.55fr 1fr;grid-template-rows:269px;gap:14px;align-items:stretch}
+.about-col{min-width:0;display:flex;flex-direction:column;gap:14px}
 .about-tile{min-width:0;background:#fff;border:1px solid #d7e4f5;border-radius:24px;padding:24px 26px}
 /* синяя карточка ATUL — язык hero-note (плашка «Каталог»): градиент, чипы индустрий */
 /* левая колонка бенто: компактная синяя карточка + фото-прямоугольник снизу */
-.about-atul{display:flex;flex-direction:column;gap:10px;padding:22px 26px;border-radius:24px;background:linear-gradient(150deg,#7ab6ee 0%,#407edc 100%);color:#fff;text-decoration:none}
+.about-atul{min-width:0;display:flex;flex-direction:column;gap:10px;padding:22px 26px;border-radius:24px;background:linear-gradient(150deg,#7ab6ee 0%,#407edc 100%);color:#fff;text-decoration:none}
 .about-atul-label{margin:0;font-family:var(--head);font-weight:500;font-size:11px;line-height:1.4;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .about-atul h3{margin:0;font-family:var(--head);font-weight:500;font-size:26px;line-height:1.1;letter-spacing:.01em;color:#fff}
-.about-atul .about-chips{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}
-.about-atul .about-chips span{padding:6px 13px;border-radius:50px;border:1px solid rgba(255,255,255,.4);font-family:var(--head);font-weight:500;font-size:11.5px;line-height:1.4;color:#fff;white-space:nowrap}
-/* фото-прямоугольник — небольшой, высота ряда бенто задаётся плитками */
-.about-photo{flex:none;height:110px;border-radius:24px;overflow:hidden;border:1px solid #d7e4f5;background:#eaf3fd}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.about-atul .about-chips{margin-top:auto;width:100%;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.about-chip-track{display:flex;flex-wrap:nowrap;gap:8px;width:max-content}
+.about-atul .about-chips span{flex:none;padding:6px 13px;border-radius:50px;border:1px solid rgba(255,255,255,.4);font-family:var(--head);font-weight:500;font-size:11.5px;line-height:1.4;color:#fff;white-space:nowrap}
+/* фото-прямоугольник в центре бенто (эталон Group 136) */
+.about-photo{min-width:0;border-radius:24px;overflow:hidden;border:1px solid #d7e4f5;background:#eaf3fd}
+.about-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media (prefers-reduced-motion: no-preference){.about-chip-track{animation:about-chip-loop 18s linear infinite}.about-atul:hover .about-chip-track,.about-atul:focus-within .about-chip-track{animation-play-state:paused}}
+@keyframes about-chip-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 /* светлые плитки — подложка .catalog-panel с заголовком */
 .about-tile h3{margin:0 0 10px;font-family:var(--head);font-weight:500;font-size:18px;line-height:1.2;letter-spacing:.01em;color:#1d3a68}
 .about-tile p{margin:0 0 12px;font-family:var(--head);font-size:12.5px;line-height:1.6;color:#3d5070}
@@ -585,8 +671,8 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .about-note{margin:22px 0 0;font-family:var(--head);font-size:13px;line-height:1.6;color:#3d5070}
 .about-note a{color:#3a9df0;font-weight:500;text-decoration:none;border-bottom:1px solid rgba(58,157,240,.35)}
 .about-note a:hover{color:#2459ed;border-bottom-color:#2459ed}
-@media (max-width:1100px){.about-bento{grid-template-columns:1fr 1fr}.about-col{grid-column:1/-1;grid-row:auto}.about-tile{grid-column:auto}.about-photo{flex:none;height:150px}}
-@media (max-width:700px){.about-bento{grid-template-columns:1fr}}
+@media (max-width:1100px){.about-bento{grid-template-columns:1fr 1fr}.about-tile:nth-child(1){grid-column:1}.about-photo{grid-column:2;grid-row:1/3}.about-tile:nth-child(3){grid-column:1}}
+@media (max-width:700px){.about-bento{grid-template-columns:1fr;grid-template-rows:auto}.about-photo{grid-column:auto;grid-row:auto;min-height:220px}}
 
 .sec-wrap.sec-applications{max-width:1480px;padding:0 28px 24px}
 /* та же редакторская система, но засечка у «Отраслей» — с правого края */
@@ -676,8 +762,9 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
   .wrap{padding:32px clamp(16px,4vw,24px)}
   .applications-card{padding:16px;border-radius:20px}
   .section-intro{margin:0 0 28px}
-  .sector-controls{grid-template-columns:1fr;gap:8px}
-  .sector-controls button{min-height:52px;padding:14px 16px;font-size:13px}
+  .sector-controls{display:flex;flex-wrap:nowrap;gap:8px;width:100%;height:auto;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-snap-type:x proximity}
+  .sector-controls::-webkit-scrollbar{display:none}
+  .sector-controls button{flex:none;min-height:52px;padding:14px 16px;font-size:13px;white-space:nowrap;scroll-snap-align:start}
   .application-panel{gap:12px}
   .application-photo{height:220px}
   .application-copy{padding:16px}
@@ -730,14 +817,22 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
 .catalog-table tbody tr:hover td{background:#f4f9ff}
 /* кнопка скачивания — одна на секцию, пилюля как все кнопки сайта:
    заливка на слое ::before, при наведении плавно гаснет (opacity), текст синеет */
-.catalog-download-head{margin-top:0}
+.catalog-download-desktop{margin-top:0}
+.catalog-download.catalog-download-mobile{display:none}
 .catalog-download{position:relative;z-index:0;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 24px;margin-top:18px;border:none;outline:none;border-radius:50px;background:#fff;color:#fff;font-family:var(--head);font-weight:500;font-size:14px;line-height:1.4;text-decoration:none;cursor:pointer;width:fit-content;transition:color 1.3s cubic-bezier(.3,.55,.25,1)}
 .catalog-download::before{content:'';position:absolute;inset:0;border-radius:50px;background:#3a9df0;z-index:-1;transition:opacity 1.3s cubic-bezier(.3,.55,.25,1)}
 .catalog-download::after{content:'';position:absolute;inset:0;border-radius:50px;border:1px solid #a3c6ee;pointer-events:none}
 .catalog-download:hover,.catalog-download:focus-visible{color:#3a9df0}
 .catalog-download:hover::before,.catalog-download:focus-visible::before{opacity:0}
 .catalog-download svg{width:16px;height:16px;flex:none;position:relative;z-index:2}
-@media (max-width:820px){.catalog-panel{padding:18px 16px}.catalog-controls button{padding:11px 16px;font-size:13px}}
+@media (max-width:820px){
+.catalog-panel{padding:18px 16px}
+.catalog-controls button{padding:11px 16px;font-size:13px}
+/* табы каталога — один ряд с горизонтальным свайпом, без переноса */
+.catalog-controls{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;scroll-snap-type:x proximity}
+.catalog-controls::-webkit-scrollbar{display:none}
+.catalog-controls button{flex:none;white-space:nowrap;scroll-snap-align:start}
+}
 .sec-wrap.sec-contact{max-width:1480px;padding:0 28px 24px}
 /* верхний отступ футера — тоже 24px, как между остальными секциями */
 .site-footer{padding-top:24px}
@@ -798,6 +893,8 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
   .contact-line .contact-text{min-width:0;overflow-wrap:anywhere}
   .catalog-category-head{flex-direction:column;align-items:flex-start;gap:0}
   .catalog-download{margin-top:8px}
+  .catalog-download-desktop{display:none}
+  .catalog-download.catalog-download-mobile{display:inline-flex}
   .hero-bento .hero-art{overflow:hidden}
 }
 @media(max-width:360px){
@@ -808,6 +905,17 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
   .site-header .phone{font-size:9px;height:34px;padding:0 9px}
   .site-header .phone .arr{font-size:11px;margin-left:4px}
 }
+  /* — выравнивание по ширине на мобильных: hero-контент в 12px от края,
+     header и все секции приводим к той же сетке (в конце CSS, чтобы перебить
+     базовые padding-правила секций) — */
+  @media (max-width: 700px) {
+    .site-header.hero-preview-header { margin-left: 12px; margin-right: 12px; }
+    .sec-wrap.sec-about,
+    .sec-wrap.sec-services,
+    .sec-wrap.sec-applications,
+    .sec-wrap.sec-catalog,
+    .sec-wrap.sec-contact { padding-left: 12px; padding-right: 12px; }
+  }
   </style>
   <script src="embed-host.js" defer></script>
 </head>
@@ -823,8 +931,9 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
       <a class="brand hero-preview-brand" href="#top" aria-label="OTS — на главную">
         <img class="logo" src="new logo RU.svg" alt="OTS — геометрический логотип">
       </a>
-      <nav class="nav hero-preview-nav" id="site-nav" aria-label="Основная навигации"><a href="#about" data-t="О компании">О компании</a><a href="#services" data-t="Сферы деятельности">Сферы деятельности</a><a href="#applications" data-t="Отрасли применения">Отрасли применения</a><a href="#catalog" data-t="Каталог">Каталог</a><a href="#contact" data-t="Контакты">Контакты</a></nav>
+      <nav class="nav hero-preview-nav" id="site-nav" aria-label="Основная навигации"><a href="#about" data-t="О компании">О компании</a><a href="#services" data-t="Сферы деятельности">Сферы деятельности</a><a href="#applications" data-t="Отрасли применения">Отрасли применения</a><a href="#catalog" data-t="Каталог">Каталог</a><a href="#contact" data-t="Контакты">Контакты</a><a class="mobile-menu-phone" href="tel:+79636553780">+7 (963) 655-37-80</a></nav>
       <span class="lang" aria-label="Русский язык"><span class="flag"><i></i><i></i><i></i></span>RU</span>
+      <button class="header-burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span><span></span><span></span></button>
       <a class="phone" href="tel:+79636553780">+7 (963) 655-37-80</a>
     </header>
 
@@ -845,14 +954,14 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
             <span class="hero-visual-count">MATERIAL / 01</span>
           </div>
           <div class="hero-material-caption"><p>Идеальная комбинация<br>для вашего проекта</p><a href="#applications">Посмотреть отрасли применения</a></div>
-          <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path d="M99.5 0V10A16 16 0 0 1 83.5 26H56A30 30 0 0 0 26 56V83.5A16 16 0 0 1 10 99.5H0V101H101V0Z" fill="#f2f6fa"/><path d="M99.5 0V10A16 16 0 0 1 83.5 26H56A30 30 0 0 0 26 56V83.5A16 16 0 0 1 10 99.5H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><a class="hero-circle" href="#applications" aria-label="Перейти к отраслям применения"><svg class="icon" aria-hidden="true"><use href="#i-diagonal"/></svg></a></div>
+          <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path d="M100.5 0V10A16 16 0 0 1 84.5 26H56A30 30 0 0 0 26 56V84.5A16 16 0 0 1 10 100.5H0V127H127V0Z" fill="#f2f6fa"/><path d="M100.5 0V10A16 16 0 0 1 84.5 26H56A30 30 0 0 0 26 56V84.5A16 16 0 0 1 10 100.5H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><a class="hero-circle" href="#applications" aria-label="Перейти к отраслям применения"><svg class="icon" aria-hidden="true"><use href="#i-diagonal"/></svg></a></div>
         </div>
 
         <!-- Плашка «Каталог»: якорь на секцию каталога -->
         <a class="hero-note" href="#catalog" data-topic="Каталог SKU">
           <h2>Каталог<br>эпоксидных систем</h2>
           <p>Компаунды, отвердители, эпоксидные смолы.</p>
-          <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path class="cut-fill" d="M99.5 0V10A16 16 0 0 1 83.5 26H56A30 30 0 0 0 26 56V83.5A16 16 0 0 1 10 99.5H0V101H101V0Z" fill="#f2f6fa"/><path class="cut-line" d="M99.5 0V10A16 16 0 0 1 83.5 26H56A30 30 0 0 0 26 56V83.5A16 16 0 0 1 10 99.5H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><span class="hero-circle hero-circle-outline" aria-hidden="true"><svg class="icon"><use href="#i-diagonal"/></svg></span></div>
+          <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path class="cut-fill" d="M100 0V10A16 16 0 0 1 84 26H56A30 30 0 0 0 26 56V84A16 16 0 0 1 10 100H0V101H101V0Z" fill="#f2f6fa"/><path class="cut-line" d="M100 0V10A16 16 0 0 1 84 26H56A30 30 0 0 0 26 56V84A16 16 0 0 1 10 100H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><span class="hero-circle hero-circle-outline" aria-hidden="true"><svg class="icon"><use href="#i-diagonal"/></svg></span></div>
         </a>
       </section>
 
@@ -862,23 +971,10 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
         <div class="about-card">
           <header class="section-intro">
             <p class="section-label">О компании</p>
-            <h2 class="section-heading" id="about-heading">Продукты из <em>Индии</em></h2>
-            <p class="about-lead">Компаунды, отвердители и эпоксидные смолы производятся на предприятиях ATUL в Индии. ОТР помогает подобрать подходящие системы и сопровождает их применение в российских проектах.</p>
+            <h2 class="section-heading" id="about-heading">Компания <em>ОТР (Россия)</em> представляет продукцию из <em>Индии</em></h2>
+            <p class="about-lead">Компаунды, отвердители и эпоксидные смолы для авиации и космоса, электроники, электротехники, ветроэнергетики, судостроения и иных направлений, производятся на предприятиях ATUL в Индии. ОТР помогает подобрать подходящие системы и сопровождает их применение в российских проектах.</p>
           </header>
           <div class="about-bento">
-            <div class="about-col">
-              <a class="about-atul" href="#catalog">
-                <h3>Компаунды от мирового лидера</h3>
-                <div class="about-chips">
-                  <span>Авиация и космос</span>
-                  <span>Электроника</span>
-                  <span>Электротехника</span>
-                  <span>Ветроэнергетика</span>
-                  <span>Судостроение</span>
-                </div>
-              </a>
-              <div class="about-photo"><img src="f04ef73eebfe9fbd46ef67dfff1c865d.jpg" alt="Молекулярная структура эпоксидного компаунда" loading="lazy"></div>
-            </div>
             <div class="about-tile">
               <h3>Отличие от аналогов</h3>
               <p>Высокие диэлектрические и термические свойства — в отличие от китайских аналогов. Применяются в производстве:</p>
@@ -889,6 +985,7 @@ opacity:0;visibility:hidden;transition:opacity .01s linear,visibility 0s}
                 <li>Термопредохранителей, узлов, адгезивов</li>
               </ul>
             </div>
+            <div class="about-photo"><img src="Безымянвный.png" alt="Ёмкости с компаундами и молекулярные модели на светлом фоне" width="1480" height="983" loading="lazy"></div>
             <div class="about-tile">
               <h3>Методы переработки</h3>
               <p>Системы для внутреннего и наружного использования:</p>
@@ -1111,7 +1208,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <article class="catalog-category" data-catalog-panel="compounds" aria-live="polite">
 <div class="catalog-category-head">
 <h3>Компаунды</h3>
-<a class="catalog-download catalog-download-head" href="Каталог.xlsx" download="OTS-каталог.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a>
+<a class="catalog-download catalog-download-desktop" href="Каталог.xlsx" download="OTS-каталог.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a>
 </div>
 <p class="catalog-category-desc">Готовые системы из смолы, отвердителя и добавок: заливка и герметизация распределительных устройств, трансформаторов, электронных компонентов, адгезивы и клеи. Ниже — все системы с ключевыми характеристиками.</p>
 <div class="catalog-table-wrap">
@@ -1154,6 +1251,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 </tbody>
 </table>
 </div>
+<a class="catalog-download catalog-download-mobile" href="Каталог.xlsx" download="OTS-каталог.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a>
 </article>
 <article class="catalog-category" data-catalog-panel="resins" hidden>
 <div class="catalog-category-head">
@@ -1247,6 +1345,25 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
     </footer>
   </div>
 <script>
+// При масштабе экрана 1.5px CSS-рамки округляются до разных значений.
+// Стыкуем контур белого выреза с фактической рамкой, не двигая кнопку.
+(function(){
+  var card = document.querySelector('.hero-art');
+  var paths = card.querySelectorAll('.hero-corner-stroke > path');
+  function alignCorner(){
+    var border = parseFloat(getComputedStyle(card).borderRightWidth);
+    var edge = 100 + border / 2, tangent = edge - 16;
+    var contour = 'M' + edge + ' 0V10A16 16 0 0 1 ' + tangent + ' 26H56A30 30 0 0 0 26 56V' + tangent + 'A16 16 0 0 1 10 ' + edge + 'H0';
+    paths[0].setAttribute('d', contour + 'V127H127V0Z');
+    paths[1].setAttribute('d', contour);
+    paths[1].setAttribute('stroke-width', border);
+  }
+  alignCorner();
+  window.addEventListener('resize', alignCorner);
+  new ResizeObserver(alignCorner).observe(card);
+})();
+</script>
+<script>
 // Плавная инерционная прокрутка колеса (как ruschemicals.com):
 // перехват wheel + преследование цели с затуханием. Анимация НЕ перезапускается
 // на каждый тик — цель накапливается, скорость плавно падает к нулю (экспоненциальное
@@ -1297,7 +1414,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 var tabs = document.querySelectorAll('.tab');
 var CLOSE_MS = 1000; // столько же, сколько transition flex-grow
 tabs.forEach(function(tab){
-tab.addEventListener('mouseenter', function(){
+var activate = function(){
 tabs.forEach(function(t){
 if (t === tab) return;
 if (t.classList.contains('open')) {
@@ -1310,7 +1427,33 @@ t._ct = setTimeout(function(){ t.classList.remove('closing'); }, CLOSE_MS);
 tab.classList.remove('closing');
 clearTimeout(tab._ct);
 tab.classList.add('open');
+};
+tab.addEventListener('mouseenter', activate);
+// тач-устройства: ховера нет — раскрываем по тапу
+tab.addEventListener('click', activate);
 });
+})();
+</script>
+<script>
+// Бургер-меню (мобильные): toggle панели навигации под шапкой,
+// закрытие — по ссылке, по тапу вне шапки, по Esc
+(function(){
+var header = document.querySelector('.site-header.hero-preview-header');
+var burger = header && header.querySelector('.header-burger');
+if (!burger) return;
+function setOpen(open){
+header.classList.toggle('nav-open', open);
+burger.setAttribute('aria-expanded', String(open));
+}
+burger.addEventListener('click', function(){ setOpen(!header.classList.contains('nav-open')); });
+header.querySelectorAll('.hero-preview-nav a').forEach(function(a){
+a.addEventListener('click', function(){ setOpen(false); });
+});
+document.addEventListener('click', function(e){
+if (header.classList.contains('nav-open') && !header.contains(e.target)) setOpen(false);
+});
+document.addEventListener('keydown', function(e){
+if (e.key === 'Escape') setOpen(false);
 });
 })();
 </script>
