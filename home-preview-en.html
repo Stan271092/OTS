@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eef1f4">
-  <meta name="description" content="Превью hero с плашкой «Каталог» — ссылка на SKU-каталог эпоксидных систем ООО «ОТР».">
-  <title>ООО «ОТР» — главная (превью: hero + услуги + отрасли)</title>
+  <meta name="description" content="Hero preview with the catalog plate — link to the SKU catalog of epoxy systems by OTS.">
+  <title>OTS — Home (preview: hero + services + industries)</title>
   <link rel="icon" href="assets/ots-favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="hero.css">
@@ -179,6 +179,7 @@
     .site-header .lang .flag i:nth-child(3) { background: #e23c3c; }
     .site-header .lang::after { content: '▾'; font-size: 10px; color: #8a97a2; margin-left: 2px; }
     .site-header a.lang { text-decoration: none; }
+    .site-header .lang svg.flag { display: block; }
     /* Телефон: пилюля, анимация заполнения в обратном порядке —
        в покое синяя с белым текстом, при наведении растекается до прозрачной с синим текстом.
        Заливка — на слое ::before и гасится через opacity: gradient↔color не интерполируется
@@ -926,7 +927,7 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
   <script src="embed-host.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <a class="skip-link" href="#main">Skip to content</a>
   <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="i-diagonal" viewBox="0 0 24 24"><path d="M8.5 7 15.5 12 8.5 17" fill="none"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
@@ -934,39 +935,39 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
 
   <div class="site-shell" id="top">
     <header class="header site-header hero-preview-header">
-      <a class="brand hero-preview-brand" href="#top" aria-label="ООО «ОТР» — на главную">
-        <img class="logo" src="new logo RU.svg" alt="ООО «ОТР» — геометрический логотип">
+      <a class="brand hero-preview-brand" href="#top" aria-label="OTS — home">
+        <img class="logo" src="new logo eng.svg" alt="OTS — geometric logo">
       </a>
-      <nav class="nav hero-preview-nav" id="site-nav" aria-label="Основная навигации"><a href="#about" data-t="О компании">О компании</a><a href="#services" data-t="Сферы деятельности">Сферы деятельности</a><a href="#applications" data-t="Отрасли применения">Отрасли применения</a><a href="#catalog" data-t="Каталог">Каталог</a><a href="#contact" data-t="Контакты">Контакты</a><a class="mobile-menu-phone" href="tel:+79636553780">+7 (963) 655-37-80</a></nav>
-      <a class="lang" href="home-preview-en.html" aria-label="English version"><span class="flag"><i></i><i></i><i></i></span>RU</a>
-      <button class="header-burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+      <nav class="nav hero-preview-nav" id="site-nav" aria-label="Main navigation"><a href="#about" data-t="About">About</a><a href="#services" data-t="Services">Services</a><a href="#applications" data-t="Industries">Industries</a><a href="#catalog" data-t="Catalog">Catalog</a><a href="#contact" data-t="Contact">Contact</a><a class="mobile-menu-phone" href="tel:+79636553780">+7 (963) 655-37-80</a></nav>
+      <a class="lang" href="home-preview.html" aria-label="Switch to Russian"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><clipPath id="ujf"><path d="M30,15h30v15z v15h-30z h-30v-15z v-15h30z"/></clipPath><rect width="60" height="30" fill="#00247d"/><path d="M0,0 60,30M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30M60,0 0,30" stroke="#c8102e" stroke-width="4" clip-path="url(#ujf)"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#c8102e" stroke-width="6"/></svg>EN</a>
+      <button class="header-burger" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
       <a class="phone" href="tel:+79636553780">+7 (963) 655-37-80</a>
     </header>
 
     <main id="main">
       <section class="hero hero-bento" id="hero-catalog-preview" aria-labelledby="hero-heading">
         <div class="hero-copy">
-          <p class="hero-category">ООО «Оптимальные технологические решения»</p>
-          <h1 id="hero-heading"><em data-text="Эпоксидные системы">Эпоксидные системы</em><strong>От НИОКР до производства</strong></h1>
-          <p class="hero-description">Разрабатываем индивидуальные эпоксидные системы для гражданского строительства, промышленности и потребительских товаров — от экспертной консультации и расчёта до подбора материалов и запуска в производство.</p>
+          <p class="hero-category">Optimal Technology Solutions</p>
+          <h1 id="hero-heading"><em data-text="Epoxy systems">Epoxy systems</em><strong>From R&D to production</strong></h1>
+          <p class="hero-description">We develop custom epoxy systems for civil engineering, industry and consumer goods — from expert consultation and calculation to material selection and production launch.</p>
           <div class="hero-actions">
-            <a class="button button-primary hero-cta" href="#contact">Отправить запрос</a>
+            <a class="button button-primary hero-cta" href="#contact">Send request</a>
           </div>
         </div>
 
         <div class="hero-art">
-          <div class="hero-stage" aria-label="Светлая композиция из прозрачных капель и гелевых сфер">
-            <img class="hero-ribbon" src="aipool-1789530996542.png" alt="Стеклянная сфера с композиционным наполнением на фоне неба">
+          <div class="hero-stage" aria-label="Light composition of transparent drops and gel spheres">
+            <img class="hero-ribbon" src="aipool-1789530996542.png" alt="Glass sphere with composite filling against the sky">
             <span class="hero-visual-count">MATERIAL / 01</span>
           </div>
-          <div class="hero-material-caption"><p>Идеальная комбинация<br>для вашего проекта</p><a href="#applications">Посмотреть отрасли применения</a></div>
-          <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path d="M100.5 0V10A16 16 0 0 1 84.5 26H56A30 30 0 0 0 26 56V84.5A16 16 0 0 1 10 100.5H0V127H127V0Z" fill="#f2f6fa"/><path d="M100.5 0V10A16 16 0 0 1 84.5 26H56A30 30 0 0 0 26 56V84.5A16 16 0 0 1 10 100.5H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><a class="hero-circle" href="#applications" aria-label="Перейти к отраслям применения"><svg class="icon" aria-hidden="true"><use href="#i-diagonal"/></svg></a></div>
+          <div class="hero-material-caption"><p>The perfect combination<br>for your project</p><a href="#applications">See application industries</a></div>
+          <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path d="M100.5 0V10A16 16 0 0 1 84.5 26H56A30 30 0 0 0 26 56V84.5A16 16 0 0 1 10 100.5H0V127H127V0Z" fill="#f2f6fa"/><path d="M100.5 0V10A16 16 0 0 1 84.5 26H56A30 30 0 0 0 26 56V84.5A16 16 0 0 1 10 100.5H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><a class="hero-circle" href="#applications" aria-label="Go to application industries"><svg class="icon" aria-hidden="true"><use href="#i-diagonal"/></svg></a></div>
         </div>
 
         <!-- Плашка «Каталог»: якорь на секцию каталога -->
-        <a class="hero-note" href="#catalog" data-topic="Каталог SKU">
-          <h2>Каталог<br>эпоксидных систем</h2>
-          <p>Компаунды, отвердители, эпоксидные смолы.</p>
+        <a class="hero-note" href="#catalog" data-topic="SKU catalog">
+          <h2>Epoxy systems<br>catalog</h2>
+          <p>Compounds, hardeners, epoxy resins.</p>
           <div class="hero-corner"><svg class="hero-corner-stroke" aria-hidden="true" viewBox="0 0 127 127"><path class="cut-fill" d="M100 0V10A16 16 0 0 1 84 26H56A30 30 0 0 0 26 56V84A16 16 0 0 1 10 100H0V101H101V0Z" fill="#f2f6fa"/><path class="cut-line" d="M100 0V10A16 16 0 0 1 84 26H56A30 30 0 0 0 26 56V84A16 16 0 0 1 10 100H0" fill="none" stroke="#d7e4f5" stroke-width="1"/></svg><span class="hero-circle hero-circle-outline" aria-hidden="true"><svg class="icon"><use href="#i-diagonal"/></svg></span></div>
         </a>
       </section>
@@ -976,36 +977,36 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
       <section id="about" aria-labelledby="about-heading">
         <div class="about-card">
           <header class="section-intro">
-            <p class="section-label">О компании</p>
-            <h2 class="section-heading" id="about-heading">ООО <em>«Оптимальные технологические решения»</em> осуществляет поставки эпоксидных смол, отвердителей, модификаторов, готовых систем и компаундов</h2>
-            <p class="about-lead">Компаунды, отвердители и эпоксидные смолы для электроники, электротехники, ветроэнергетики, судостроения и иных направлений поставляются только от проверенных производителей из Индии. Наша компания помогает разработать или подобрать подходящие системы, а также осуществляет техническую поддержку при их внедрении в проектах наших клиентов.</p>
+            <p class="section-label">About</p>
+            <h2 class="section-heading" id="about-heading"><em>Optimal Technology Solutions</em> supplies epoxy resins, hardeners, modifiers, ready-made systems and compounds</h2>
+            <p class="about-lead">Compounds, hardeners and epoxy resins for electronics, electrical engineering, wind energy, shipbuilding and other applications are supplied only from verified manufacturers in India. Our company helps to develop or select suitable systems and provides technical support for their implementation in our clients’ projects.</p>
           </header>
           <div class="about-bento">
             <div class="about-tile">
-              <h3>Отличие от аналогов</h3>
-              <p>Высокие диэлектрические и термические свойства. Области применения:</p>
+              <h3>Advantages over analogues</h3>
+              <p>High dielectric and thermal properties. Application areas:</p>
               <ul class="about-list">
-                <li>Электронных плат и конденсаторов</li>
-                <li>Изоляторов и распределительных устройств</li>
-                <li>Генераторов и трансформаторов</li>
-                <li>Термопредохранителей, узлов, адгезивов</li>
-                <li>Производство композиционных материалов</li>
+                <li>Electronic boards and capacitors</li>
+                <li>Insulators and switchgear</li>
+                <li>Generators and transformers</li>
+                <li>Thermal fuses, units, adhesives</li>
+                <li>Production of composite materials</li>
               </ul>
             </div>
-            <div class="about-photo"><img src="efc4b10b-027c-4bd9-bf0d-de8af7429659.png" alt="Ёмкости с компаундами и молекулярные модели на светлом фоне" width="1536" height="1024" loading="lazy"></div>
+            <div class="about-photo"><img src="efc4b10b-027c-4bd9-bf0d-de8af7429659.png" alt="Containers with compounds and molecular models on a light background" width="1536" height="1024" loading="lazy"></div>
             <div class="about-tile">
-              <h3>Методы переработки</h3>
-              <p>Системы для внутреннего и наружного использования:</p>
+              <h3>Processing methods</h3>
+              <p>Systems for indoor and outdoor use:</p>
               <ul class="about-list">
-                <li>Вакуумная заливка</li>
-                <li>Заливка под давлением и вакуумом (APG, CVC)</li>
-                <li>Герметизация / инкапсуляция</li>
-                <li>Изготовление препегов</li>
-                <li>Намотка, пултрузия и другое</li>
+                <li>Vacuum casting</li>
+                <li>Pressure and vacuum casting (APG, CVC)</li>
+                <li>Sealing / encapsulation</li>
+                <li>Prepreg manufacturing</li>
+                <li>Filament winding, pultrusion and more</li>
               </ul>
             </div>
           </div>
-          <p class="about-note">Список всех позиций с электрическими, термическими, физико-химическими и другими свойствами представлен в <a href="#catalog">каталоге</a>.</p>
+          <p class="about-note">The full list of items with electrical, thermal, physico-chemical and other properties is available in the <a href="#catalog">catalog</a>.</p>
         </div>
       </section>
     </div>
@@ -1016,14 +1017,14 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
 <div class="page-row">
 <div class="services-tabs">
 <div class="side-copy">
-<p class="side-label">Сферы деятельности</p>
-<h2 id="services-heading" class="side-heading">Комплексные эпоксидные <em>решения</em></h2>
-<p class="side-lead">От концепции до производства — ООО «ОТР» предлагает полный спектр услуг в области разработки, подбора и поставки полимерных и композитных материалов.</p>
+<p class="side-label">Services</p>
+<h2 id="services-heading" class="side-heading">Comprehensive epoxy <em>solutions</em></h2>
+<p class="side-lead">From concept to production — OTS offers a full range of services in the development, selection and supply of polymer and composite materials.</p>
 </div>
 <div class="tabs">
 <article class="tab open">
 <span class="tab-num">01</span>
-<span class="tab-side">Исследования и разработки</span>
+<span class="tab-side">Research & Development</span>
 <div class="tab-art" aria-hidden="true"><svg viewBox="127 56 156 156" fill="none" preserveAspectRatio="xMaxYMin meet">
 <!-- лабораторная колба -->
 <path d="M172 56 H238 M186 56 V104 L136 186 A16 16 0 0 0 150 212 H260 A16 16 0 0 0 274 186 L224 104 V56" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/>
@@ -1051,11 +1052,11 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:13.5px}
 <animate attributeName="opacity" dur="5s" begin="3.4s" repeatCount="indefinite" values="0;1;1;1;0" keyTimes="0;.08;.58;.86;1"/>
 </circle>
 </svg></div>
-<div class="tab-body"><h3>Исследования и разработки</h3><p>Собственные разработки и создание эпоксидных систем для различных отраслей, в том числе под требования заказчика.</p></div>
+<div class="tab-body"><h3>Research & Development</h3><p>In-house development and creation of epoxy systems for various industries, including custom requirements.</p></div>
 </article>
 <article class="tab">
 <span class="tab-num">02</span>
-<span class="tab-side">Производство на заказ</span>
+<span class="tab-side">Custom manufacturing</span>
 <div class="tab-art" aria-hidden="true"><svg viewBox="185 43 157 157" fill="none" preserveAspectRatio="xMaxYMin meet">
 <!-- шестерня: цельный зубчатый контур одним путём (8 зубьев) -->
 <g class="spin-cw">
@@ -1072,11 +1073,11 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <circle cx="315" cy="165" r="3.5" stroke="#83d7ff" stroke-opacity=".8" stroke-width="1.2"/>
 </g>
 </svg></div>
-<div class="tab-body"><h3>Производство на заказ</h3><p>Производство эпоксидных систем по ТУ или спецификациям, оптимизированных под конкретные требования заказчика.</p></div>
+<div class="tab-body"><h3>Custom manufacturing</h3><p>Production of epoxy systems to specifications, optimized for specific customer requirements.</p></div>
 </article>
 <article class="tab">
 <span class="tab-num">03</span>
-<span class="tab-side">Комплексное проектирование</span>
+<span class="tab-side">Integrated engineering</span>
 <div class="tab-art" aria-hidden="true"><svg viewBox="96 29 192 192" fill="none" preserveAspectRatio="xMaxYMin meet">
 <!-- проекция детали: вид сверху и сбоку; отверстия-кружочки плавают внутри контура -->
 <rect x="156" y="70" width="108" height="72" rx="7" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2"/>
@@ -1094,11 +1095,11 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <!-- линия проекции -->
 <line x1="210" y1="142" x2="210" y2="166" stroke="#29a6ff" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="4 5"/>
 </svg></div>
-<div class="tab-body"><h3>Комплексное проектирование</h3><p>Комплексные проектные услуги, включая анализ материалов, расчёт состава и оптимизацию рецептур для конкретных применений.</p></div>
+<div class="tab-body"><h3>Integrated engineering</h3><p>Comprehensive engineering services, including material analysis, formulation calculation and recipe optimization for specific applications.</p></div>
 </article>
 <article class="tab">
 <span class="tab-num">04</span>
-<span class="tab-side">Консалтинг по материалам</span>
+<span class="tab-side">Materials consulting</span>
 <div class="tab-art" aria-hidden="true"><svg viewBox="168 50 140 140" fill="none" preserveAspectRatio="xMaxYMin meet">
 <!-- круг с молекулой: узлы + связи, стиль как в колбе таба 01 (лупа удалена) -->
 <circle cx="238" cy="120" r="66" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2"/>
@@ -1114,11 +1115,11 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <circle class="pulse p3 drift c" cx="266" cy="100" r="5" fill="#83d7ff"/>
 <circle class="pulse p4 drift d" cx="266" cy="142" r="5" fill="#83d7ff"/>
 </svg></div>
-<div class="tab-body"><h3>Консалтинг по материалам</h3><p>Экспертное сопровождение и помощь в подборе материалов, обеспечивающих соответствие требованиям системы для конкретного применения и условий эксплуатации.</p></div>
+<div class="tab-body"><h3>Materials consulting</h3><p>Expert support and assistance in selecting materials that meet system requirements for specific applications and operating conditions.</p></div>
 </article>
 <article class="tab">
 <span class="tab-num">05</span>
-<span class="tab-side">Прототипирование и тестирование</span>
+<span class="tab-side">Prototyping and testing</span>
 <div class="tab-art" aria-hidden="true"><svg viewBox="138.5 32 194 194" fill="none" preserveAspectRatio="xMaxYMin meet">
 <!-- флакон-образец с пробой + контрольные галочки испытаний -->
 <path d="M208 32 C230 64 248 84 248 108 A40 40 0 1 1 168 108 C168 84 186 64 208 32 Z" stroke="#29a6ff" stroke-opacity=".6" stroke-width="2"/>
@@ -1130,11 +1131,11 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <path d="M276 178 L285 187 L303 162" stroke="#29a6ff" stroke-opacity=".7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M276 212 L285 221 L303 196" stroke="#83d7ff" stroke-opacity=".55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg></div>
-<div class="tab-body"><h3>Прототипирование и тестирование</h3><p>Собственные лабораторные мощности для быстрого прототипирования, испытаний и валидации характеристик в реальных условиях.</p></div>
+<div class="tab-body"><h3>Prototyping and testing</h3><p>In-house laboratory facilities for rapid prototyping, testing and validation of properties under real conditions.</p></div>
 </article>
 <article class="tab">
 <span class="tab-num">06</span>
-<span class="tab-side">Техническая поддержка</span>
+<span class="tab-side">Technical support</span>
 <div class="tab-art" aria-hidden="true"><svg viewBox="140 34.5 167 167" fill="none" preserveAspectRatio="xMaxYMin meet">
 <!-- круглосуточная поддержка: циферблат + орбита -->
 <circle cx="222" cy="118" r="64" stroke="#29a6ff" stroke-opacity=".55" stroke-width="2"/>
@@ -1154,7 +1155,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <circle cx="304" cy="118" r="3.5" fill="#83d7ff"/>
 </g>
 </svg></div>
-<div class="tab-body"><h3>Техническая поддержка</h3><p>Постоянная техническая поддержка на протяжении всего жизненного цикла продукта, от подбора материала до внедрения в производство и эксплуатации изделия.</p></div>
+<div class="tab-body"><h3>Technical support</h3><p>Continuous technical support throughout the product life cycle, from material selection to production implementation and product operation.</p></div>
 </article>
 </div>
 </div>
@@ -1167,29 +1168,29 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <section id="applications" aria-labelledby="applications-heading">
 <div class="applications-card">
 <header class="section-intro">
-<p class="section-label">Отрасли применения</p>
-<h2 class="section-heading" id="applications-heading">Решения для <em>различных отраслей</em></h2>
-<p class="section-description">ООО «ОТР» разрабатывает решения для множества секторов — от электроники до высокоэффективного спортивного инвентаря.</p>
+<p class="section-label">Industries</p>
+<h2 class="section-heading" id="applications-heading">Solutions for <em>various industries</em></h2>
+<p class="section-description">OTS develops solutions for many sectors — from electronics to high-performance sports equipment.</p>
 </header>
 <div class="applications-layout">
-<div class="sector-controls" role="group" aria-label="Выберите отрасль">
-<button type="button" data-sector="electronics" aria-pressed="true" aria-controls="application-panel">Электроника и электротехника</button>
-<button type="button" data-sector="industry" aria-pressed="false" aria-controls="application-panel">Промышленность</button>
-<button type="button" data-sector="sport" aria-pressed="false" aria-controls="application-panel">Спорт</button>
-<button type="button" data-sector="research" aria-pressed="false" aria-controls="application-panel">НИОКР</button>
+<div class="sector-controls" role="group" aria-label="Select an industry">
+<button type="button" data-sector="electronics" aria-pressed="true" aria-controls="application-panel">Electronics & electrical engineering</button>
+<button type="button" data-sector="industry" aria-pressed="false" aria-controls="application-panel">Industry</button>
+<button type="button" data-sector="sport" aria-pressed="false" aria-controls="application-panel">Sports</button>
+<button type="button" data-sector="research" aria-pressed="false" aria-controls="application-panel">R&D</button>
 </div>
 <article class="application-panel" id="application-panel" aria-labelledby="application-title">
 <div class="application-photo">
-<img id="application-image" src="881fb31ced2d62f387f5726084171d2b.jpg" alt="Электронные компоненты и плата на светло-голубом фоне" width="1199" height="938">
-<span class="photo-label" id="application-photo-label">Специальные свойства</span>
+<img id="application-image" src="881fb31ced2d62f387f5726084171d2b.jpg" alt="Electronic components and a board on a light-blue background" width="1199" height="938">
+<span class="photo-label" id="application-photo-label">Special properties</span>
 <span class="photo-counter" id="application-counter" aria-hidden="true">01 / 04</span>
 </div>
 <div class="application-copy" aria-live="polite" aria-atomic="true">
-<p class="application-category" id="application-category">Диэлектрические свойства</p>
-<h3 id="application-title">Электроника и электротехника</h3>
-<p class="application-description" id="application-description">Составы для заливки компонентов, герметизации, защитных покрытий плат и корпусов, где важны диэлектрические характеристики и термостабильность материала.</p>
-<ul class="application-list" id="application-list"><li>Компаунды</li><li>Отвердители</li><li>Эпоксидные смолы</li></ul>
-<a class="application-cta" href="#contact" id="application-cta" data-topic="Система для электроники">Отправить запрос</a>
+<p class="application-category" id="application-category">Dielectric properties</p>
+<h3 id="application-title">Electronics & electrical engineering</h3>
+<p class="application-description" id="application-description">Formulations for component potting, sealing and protective coatings for boards and housings, where dielectric performance and thermal stability matter.</p>
+<ul class="application-list" id="application-list"><li>Compounds</li><li>Hardeners</li><li>Epoxy resins</li></ul>
+<a class="application-cta" href="#contact" id="application-cta" data-topic="System for electronics">Send request</a>
 </div>
 </article>
 </div>
@@ -1202,77 +1203,77 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <section aria-labelledby="catalog-heading">
 <div class="catalog-card">
 <header class="section-intro">
-<p class="section-label">Каталог</p>
-<h2 class="section-heading" id="catalog-heading">Эпоксидные <em>системы</em></h2>
-<p class="section-description">Компаунды, эпоксидные смолы и отвердители ООО «ОТР» — технические характеристики систем в одном файле. Полный каталог доступен для скачивания.</p>
+<p class="section-label">Catalog</p>
+<h2 class="section-heading" id="catalog-heading">Epoxy <em>systems</em></h2>
+<p class="section-description">Compounds, epoxy resins and hardeners from OTS — system specifications in a single file. The full catalog is available for download.</p>
 </header>
-<div class="catalog-controls" role="group" aria-label="Выберите категорию каталога">
-<button type="button" data-catalog="compounds" aria-pressed="true" aria-controls="catalog-panel">Компаунды</button>
-<button type="button" data-catalog="resins" aria-pressed="false" aria-controls="catalog-panel">Эпоксидные смолы</button>
-<button type="button" data-catalog="hardeners" aria-pressed="false" aria-controls="catalog-panel">Отвердители</button>
+<div class="catalog-controls" role="group" aria-label="Select a catalog category">
+<button type="button" data-catalog="compounds" aria-pressed="true" aria-controls="catalog-panel">Compounds</button>
+<button type="button" data-catalog="resins" aria-pressed="false" aria-controls="catalog-panel">Epoxy resins</button>
+<button type="button" data-catalog="hardeners" aria-pressed="false" aria-controls="catalog-panel">Hardeners</button>
 </div>
 <div class="catalog-panel" id="catalog-panel">
 <article class="catalog-category" data-catalog-panel="compounds" aria-live="polite">
 <div class="catalog-category-head">
-<h3>Компаунды</h3>
-<a class="catalog-download catalog-download-desktop" href="Каталог продукции_2026.xlsx" download="Каталог продукции_2026.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a>
+<h3>Compounds</h3>
+<a class="catalog-download catalog-download-desktop" href="Каталог продукции_2026.xlsx" download="OTS-catalog-2026.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download catalog (XLSX)</a>
 </div>
-<p class="catalog-category-desc">Готовые системы из смол, отвердителей, модификаторов: заливка и герметизация распределительных устройств, трансформаторов, электронных компонентов, адгезивы и клеи.</p>
+<p class="catalog-category-desc">Ready-made systems of resins, hardeners and modifiers: potting and sealing of switchgear, transformers and electronic components; adhesives and glues.</p>
 <div class="catalog-table-wrap">
 <table class="catalog-table">
-<thead><tr><th>Система</th><th>Состав, вес. ч.</th><th>Вязкость смеси, мПа·с</th><th>T<sub>g</sub>, °C</th><th>Теплопроводность, Вт/м·К</th><th>Класс</th><th>КЛТР, (°C)<sup>−1</sup></th><th>Сферы использования</th></tr></thead>
+<thead><tr><th>System</th><th>Composition, phr</th><th>Mixed viscosity, mPa·s</th><th>T<sub>g</sub>, °C</th><th>Thermal conductivity, W/m·K</th><th>Class</th><th>CTE, (°C)<sup>−1</sup></th><th>Application areas</th></tr></thead>
 <tbody>
-<tr><td class="sys">ARC-15 + AH-122</td><td class="wgt">Смола: 100<br>Отвердитель: 100</td><td class="vis">40 000 (25°C)<br>10 500 (40°C)<br>2 000 (60°C)</td><td class="tg">110–120</td><td class="tc">0.65–0.75</td><td class="cls">H</td><td class="cte">27–30</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">ARC-16 + AH-118 + ADP-11 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 80<br>Флексибилайзер (пластификатор): 0–8<br>Наполнитель: 320–350</td><td class="vis">5 500 (40°C)<br>3 000 (60°C)<br>1 500 (80°C)</td><td class="tg">105–115</td><td class="tc">0.85–0.95</td><td class="cls">F</td><td class="cte">31–36</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы), Измерительные трансформаторы, Сухие трансформаторы</td></tr>
-<tr><td class="sys">ARCH-11 + K-3 + K-13 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 90<br>Ускоритель: 0.5–2.0<br>Наполнитель: 300</td><td class="vis">10 000–15 000 (40°C)<br>3 000–5 000 (60°C)<br>1 000–1 500 (80°C)</td><td class="tg">100–110</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">39–41</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">ARCH-11 + AH-214 + K-13 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 90<br>Ускоритель: 0.5–2.0<br>Наполнитель: 270–300</td><td class="vis">1 000 (80°C)</td><td class="tg">100–110</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы), Измерительные трансформаторы</td></tr>
-<tr><td class="sys">ARCH-11 + AH-215 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 90<br>Наполнитель: 270</td><td class="vis">1 000 (80°C)</td><td class="tg">100–110</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы), Измерительные трансформаторы</td></tr>
-<tr><td class="sys">ARCH-12 + AH-214 + K-13 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 80<br>Ускоритель: 0.5–2.0<br>Наполнитель: 270</td><td class="vis">6400 (25°C)<br>3000 (40°C)<br>700 (60°C)</td><td class="tg">75–85</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">ARCH-12 + AH-215 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 80<br>Наполнитель: 270</td><td class="vis">6 400 (25°C)<br>3 000 (40°C)<br>700 (60°C)</td><td class="tg">75–85</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">ARCH-13 + AH-215 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 70<br>Наполнитель: 270</td><td class="vis">1 600–2 200 (80°C)</td><td class="tg">100–110</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">C-17 + K-12 + K-13 + K-14 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 100<br>Ускоритель: 0.5–1.5<br>Флексибилайзер (пластификатор): 0–20<br>Наполнитель: 400</td><td class="vis">41 500 (40°C)<br>1 500 (80°C)</td><td class="tg">85–95</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">31–36</td><td class="sph">Изоляторы, Проходные изоляторы (вводы), Распределительные устройства, Измерительные трансформаторы, Сухие трансформаторы</td></tr>
-<tr><td class="sys">C-50 + K-61 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 80<br>Наполнитель: 270</td><td class="vis">26 000 (40°C)<br>6 800 (60°C)<br>1 000 (80°C)</td><td class="tg">105–125</td><td class="tc">0.80–0.90</td><td class="cls">H</td><td class="cte">35–37</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">C-50 + K-225 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 80<br>Наполнитель: 270</td><td class="vis">50 000 (40°C)<br>11 800 (60°C)<br>2 300 (80°C)</td><td class="tg">90–105</td><td class="tc">0.80–0.90</td><td class="cls">H</td><td class="cte">36–40</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">C-51 + K-6 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 10<br>Наполнитель: 120</td><td class="vis">8 500 (25°C)</td><td class="tg">60–70</td><td class="tc">0,54</td><td class="cls">B</td><td class="cte">60–65</td><td class="sph">Адгезивы и клеи, Электрические сборки и узлы</td></tr>
-<tr><td class="sys">ARC-18 + AH-123</td><td class="wgt">Смола: 100<br>Отвердитель: 25</td><td class="vis">2 500–3 500 (25°C)</td><td class="tg">122–132</td><td class="tc">0,6</td><td class="cls">F</td><td class="cte">34–36</td><td class="sph">Распределительные устройства, Изоляторы, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">ARC-30 + AH-714</td><td class="wgt">Смола: 100<br>Отвердитель: 25</td><td class="vis">1 800 (27°C)</td><td class="tg">60–70</td><td class="tc">—</td><td class="cls">B</td><td class="cte">—</td><td class="sph">Измерительные трансформаторы, Электрические сборки и узлы</td></tr>
-<tr><td class="sys">C-2 + K-1 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 30<br>Наполнитель: 200</td><td class="vis">4 000 (120°C)<br>2 500 (140°C)</td><td class="tg">115–130</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Изоляторы, Проходные изоляторы (вводы), Измерительные трансформаторы</td></tr>
-<tr><td class="sys">C-59 + K-1 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 30<br>Наполнитель: 200</td><td class="vis">1 900 (120°C)<br>790 (130°C)<br>500 (140°C)</td><td class="tg">115–130</td><td class="tc">0.75–0.90</td><td class="cls">F</td><td class="cte">35–38</td><td class="sph">Изоляторы, Проходные изоляторы (вводы), Распределительные устройства, Измерительные трансформаторы, Сухие трансформаторы</td></tr>
-<tr><td class="sys">ARL-111 + AH-358 + ARS-101</td><td class="wgt">Смола: 100<br>Отвердитель: 15</td><td class="vis">1 300 (25°C)</td><td class="tg">80–90</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Пропитка бумаги</td></tr>
-<tr><td class="sys">C-1 + K-1 + Кварцевый наполнитель</td><td class="wgt">Смола: 100<br>Отвердитель: 30<br>Наполнитель: 200</td><td class="vis">4 000 (120°C)<br>2 500 (140°C)</td><td class="tg">115–130</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Измерительные трансформаторы, Распределительные устройства, Проходные изоляторы (вводы)</td></tr>
-<tr><td class="sys">ARF-11 + K-918 + K-13</td><td class="wgt">Смола: 100<br>Отвердитель: 85<br>Ускоритель: 1–3</td><td class="vis">300–500 (25°C)</td><td class="tg">115–130</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">L-12 + AH-113 + K-13</td><td class="wgt">Смола: 100<br>Отвердитель: 95<br>Ускоритель: 0.1–2.0</td><td class="vis">1 900–2 100 (25°C)</td><td class="tg">165–185</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">L-12 + K-918 + K-13</td><td class="wgt">Смола: 100<br>Отвердитель: 85<br>Ускоритель: 0.1–2.0</td><td class="vis">600–900 (25°C)</td><td class="tg">130–140</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">L-247 + K-918 + K-13</td><td class="wgt">Смола: 100<br>Отвердитель: 65<br>Ускоритель: 1–3</td><td class="vis">-</td><td class="tg">110–120</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">ARC-31 + AH-114 + AC-13</td><td class="wgt">Смола: 100<br>Отвердитель: 100<br>Ускоритель: 0.0–0.2</td><td class="vis">700–750 (23°C)</td><td class="tg">90–100</td><td class="tc">—</td><td class="cls">F</td><td class="cte">31–36</td><td class="sph">Сухие трансформаторы, Электрические сборки и узлы, Электродвигатели и генераторы</td></tr>
-<tr><td class="sys">ARC-35 + AH-676</td><td class="wgt">Смола: 100<br>Отвердитель: 26</td><td class="vis">10 000–13 000 (25°C)</td><td class="tg">70–80</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Электрические сборки и узлы</td></tr>
-<tr><td class="sys">ARPN-36 + K-10 + K-86 + Растворитель</td><td class="wgt">Смола: 100<br>Отвердитель: 40<br>Ускоритель: 1<br>Растворитель: 125</td><td class="vis">-</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">ARPN-36 + K-86 + Растворитель</td><td class="wgt">Смола: 100<br>Отвердитель: 3-6<br>Растворитель: 80</td><td class="vis">-</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">G-11 + L-12 + K-10 + K-86 + Растворитель</td><td class="wgt">Смола: 100<br>Отвердитель: 35<br>Ускоритель: 1–3<br>Растворитель: 100–150</td><td class="vis">-</td><td class="tg">150–160</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">G-10 + L-67 + K-66 + K-13 + Растворитель</td><td class="wgt">Смола: 100<br>Отвердитель: 23<br>Ускоритель: 0.2<br>Растворитель: 10</td><td class="vis">-</td><td class="tg">130–140</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">FR-4 + L-68 + K-66 + K-13 + Растворитель</td><td class="wgt">Смола: 100<br>Отвердитель: 32<br>Ускоритель: 1–3</td><td class="vis">-</td><td class="tg">130–140</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Электронные компоненты</td></tr>
-<tr><td class="sys">A-31 + AH-717</td><td class="wgt">Смола: 100<br>Отвердитель: 80</td><td class="vis">25 000–40 000</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">50–60</td><td class="sph">Адгезивы и клеи</td></tr>
-<tr><td class="sys">A-35 + K-35</td><td class="wgt">Смола: 100<br>Отвердитель: 30</td><td class="vis">400–600</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">60</td><td class="sph">Адгезивы и клеи</td></tr>
-<tr><td class="sys">A-38 + K-99</td><td class="wgt">Смола: 100<br>Отвердитель: 40</td><td class="vis">60 000–90 000</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">65</td><td class="sph">Адгезивы и клеи</td></tr>
-<tr><td class="sys">C-51 + K-6</td><td class="wgt">Смола: 100<br>Отвердитель: 10</td><td class="vis">-</td><td class="tg">60–70</td><td class="tc">0.19–0.20</td><td class="cls">—</td><td class="cte">90–95</td><td class="sph">Адгезивы и клеи</td></tr>
+<tr><td class="sys">ARC-15 + AH-122</td><td class="wgt">Resin: 100<br>Hardener: 100</td><td class="vis">40 000 (25°C)<br>10 500 (40°C)<br>2 000 (60°C)</td><td class="tg">110–120</td><td class="tc">0.65–0.75</td><td class="cls">H</td><td class="cte">27–30</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">ARC-16 + AH-118 + ADP-11 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 80<br>Flexibilizer (plasticizer): 0–8<br>Filler: 320–350</td><td class="vis">5 500 (40°C)<br>3 000 (60°C)<br>1 500 (80°C)</td><td class="tg">105–115</td><td class="tc">0.85–0.95</td><td class="cls">F</td><td class="cte">31–36</td><td class="sph">Switchgear, Insulators, Bushings, Instrument transformers, Dry-type transformers</td></tr>
+<tr><td class="sys">ARCH-11 + K-3 + K-13 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 90<br>Accelerator: 0.5–2.0<br>Filler: 300</td><td class="vis">10 000–15 000 (40°C)<br>3 000–5 000 (60°C)<br>1 000–1 500 (80°C)</td><td class="tg">100–110</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">39–41</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">ARCH-11 + AH-214 + K-13 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 90<br>Accelerator: 0.5–2.0<br>Filler: 270–300</td><td class="vis">1 000 (80°C)</td><td class="tg">100–110</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Switchgear, Insulators, Bushings, Instrument transformers</td></tr>
+<tr><td class="sys">ARCH-11 + AH-215 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 90<br>Filler: 270</td><td class="vis">1 000 (80°C)</td><td class="tg">100–110</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Switchgear, Insulators, Bushings, Instrument transformers</td></tr>
+<tr><td class="sys">ARCH-12 + AH-214 + K-13 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 80<br>Accelerator: 0.5–2.0<br>Filler: 270</td><td class="vis">6400 (25°C)<br>3000 (40°C)<br>700 (60°C)</td><td class="tg">75–85</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">ARCH-12 + AH-215 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 80<br>Filler: 270</td><td class="vis">6 400 (25°C)<br>3 000 (40°C)<br>700 (60°C)</td><td class="tg">75–85</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">ARCH-13 + AH-215 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 70<br>Filler: 270</td><td class="vis">1 600–2 200 (80°C)</td><td class="tg">100–110</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">C-17 + K-12 + K-13 + K-14 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 100<br>Accelerator: 0.5–1.5<br>Flexibilizer (plasticizer): 0–20<br>Filler: 400</td><td class="vis">41 500 (40°C)<br>1 500 (80°C)</td><td class="tg">85–95</td><td class="tc">0.80–0.90</td><td class="cls">F</td><td class="cte">31–36</td><td class="sph">Insulators, Bushings, Switchgear, Instrument transformers, Dry-type transformers</td></tr>
+<tr><td class="sys">C-50 + K-61 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 80<br>Filler: 270</td><td class="vis">26 000 (40°C)<br>6 800 (60°C)<br>1 000 (80°C)</td><td class="tg">105–125</td><td class="tc">0.80–0.90</td><td class="cls">H</td><td class="cte">35–37</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">C-50 + K-225 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 80<br>Filler: 270</td><td class="vis">50 000 (40°C)<br>11 800 (60°C)<br>2 300 (80°C)</td><td class="tg">90–105</td><td class="tc">0.80–0.90</td><td class="cls">H</td><td class="cte">36–40</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">C-51 + K-6 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 10<br>Filler: 120</td><td class="vis">8 500 (25°C)</td><td class="tg">60–70</td><td class="tc">0,54</td><td class="cls">B</td><td class="cte">60–65</td><td class="sph">Adhesives and glues, Electrical assemblies and units</td></tr>
+<tr><td class="sys">ARC-18 + AH-123</td><td class="wgt">Resin: 100<br>Hardener: 25</td><td class="vis">2 500–3 500 (25°C)</td><td class="tg">122–132</td><td class="tc">0,6</td><td class="cls">F</td><td class="cte">34–36</td><td class="sph">Switchgear, Insulators, Bushings</td></tr>
+<tr><td class="sys">ARC-30 + AH-714</td><td class="wgt">Resin: 100<br>Hardener: 25</td><td class="vis">1 800 (27°C)</td><td class="tg">60–70</td><td class="tc">—</td><td class="cls">B</td><td class="cte">—</td><td class="sph">Instrument transformers, Electrical assemblies and units</td></tr>
+<tr><td class="sys">C-2 + K-1 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 30<br>Filler: 200</td><td class="vis">4 000 (120°C)<br>2 500 (140°C)</td><td class="tg">115–130</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Insulators, Bushings, Instrument transformers</td></tr>
+<tr><td class="sys">C-59 + K-1 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 30<br>Filler: 200</td><td class="vis">1 900 (120°C)<br>790 (130°C)<br>500 (140°C)</td><td class="tg">115–130</td><td class="tc">0.75–0.90</td><td class="cls">F</td><td class="cte">35–38</td><td class="sph">Insulators, Bushings, Switchgear, Instrument transformers, Dry-type transformers</td></tr>
+<tr><td class="sys">ARL-111 + AH-358 + ARS-101</td><td class="wgt">Resin: 100<br>Hardener: 15</td><td class="vis">1 300 (25°C)</td><td class="tg">80–90</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Paper impregnation</td></tr>
+<tr><td class="sys">C-1 + K-1 + quartz filler</td><td class="wgt">Resin: 100<br>Hardener: 30<br>Filler: 200</td><td class="vis">4 000 (120°C)<br>2 500 (140°C)</td><td class="tg">115–130</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Instrument transformers, Switchgear, Bushings</td></tr>
+<tr><td class="sys">ARF-11 + K-918 + K-13</td><td class="wgt">Resin: 100<br>Hardener: 85<br>Accelerator: 1–3</td><td class="vis">300–500 (25°C)</td><td class="tg">115–130</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">L-12 + AH-113 + K-13</td><td class="wgt">Resin: 100<br>Hardener: 95<br>Accelerator: 0.1–2.0</td><td class="vis">1 900–2 100 (25°C)</td><td class="tg">165–185</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">L-12 + K-918 + K-13</td><td class="wgt">Resin: 100<br>Hardener: 85<br>Accelerator: 0.1–2.0</td><td class="vis">600–900 (25°C)</td><td class="tg">130–140</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">L-247 + K-918 + K-13</td><td class="wgt">Resin: 100<br>Hardener: 65<br>Accelerator: 1–3</td><td class="vis">-</td><td class="tg">110–120</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">ARC-31 + AH-114 + AC-13</td><td class="wgt">Resin: 100<br>Hardener: 100<br>Accelerator: 0.0–0.2</td><td class="vis">700–750 (23°C)</td><td class="tg">90–100</td><td class="tc">—</td><td class="cls">F</td><td class="cte">31–36</td><td class="sph">Dry-type transformers, Electrical assemblies and units, Electric motors and generators</td></tr>
+<tr><td class="sys">ARC-35 + AH-676</td><td class="wgt">Resin: 100<br>Hardener: 26</td><td class="vis">10 000–13 000 (25°C)</td><td class="tg">70–80</td><td class="tc">—</td><td class="cls">F</td><td class="cte">—</td><td class="sph">Electrical assemblies and units</td></tr>
+<tr><td class="sys">ARPN-36 + K-10 + K-86 + solvent</td><td class="wgt">Resin: 100<br>Hardener: 40<br>Accelerator: 1<br>Solvent: 125</td><td class="vis">-</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">ARPN-36 + K-86 + solvent</td><td class="wgt">Resin: 100<br>Hardener: 3-6<br>Solvent: 80</td><td class="vis">-</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">G-11 + L-12 + K-10 + K-86 + solvent</td><td class="wgt">Resin: 100<br>Hardener: 35<br>Accelerator: 1–3<br>Solvent: 100–150</td><td class="vis">-</td><td class="tg">150–160</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">G-10 + L-67 + K-66 + K-13 + solvent</td><td class="wgt">Resin: 100<br>Hardener: 23<br>Accelerator: 0.2<br>Solvent: 10</td><td class="vis">-</td><td class="tg">130–140</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">FR-4 + L-68 + K-66 + K-13 + solvent</td><td class="wgt">Resin: 100<br>Hardener: 32<br>Accelerator: 1–3</td><td class="vis">-</td><td class="tg">130–140</td><td class="tc">—</td><td class="cls">—</td><td class="cte">—</td><td class="sph">Electronic components</td></tr>
+<tr><td class="sys">A-31 + AH-717</td><td class="wgt">Resin: 100<br>Hardener: 80</td><td class="vis">25 000–40 000</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">50–60</td><td class="sph">Adhesives and glues</td></tr>
+<tr><td class="sys">A-35 + K-35</td><td class="wgt">Resin: 100<br>Hardener: 30</td><td class="vis">400–600</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">60</td><td class="sph">Adhesives and glues</td></tr>
+<tr><td class="sys">A-38 + K-99</td><td class="wgt">Resin: 100<br>Hardener: 40</td><td class="vis">60 000–90 000</td><td class="tg">—</td><td class="tc">—</td><td class="cls">—</td><td class="cte">65</td><td class="sph">Adhesives and glues</td></tr>
+<tr><td class="sys">C-51 + K-6</td><td class="wgt">Resin: 100<br>Hardener: 10</td><td class="vis">-</td><td class="tg">60–70</td><td class="tc">0.19–0.20</td><td class="cls">—</td><td class="cte">90–95</td><td class="sph">Adhesives and glues</td></tr>
 </tbody>
 </table>
 </div>
-<a class="catalog-download catalog-download-mobile" href="Каталог продукции_2026.xlsx" download="Каталог продукции_2026.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a>
+<a class="catalog-download catalog-download-mobile" href="Каталог продукции_2026.xlsx" download="OTS-catalog-2026.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Download catalog (XLSX)</a>
 </article>
 <article class="catalog-category" data-catalog-panel="resins" hidden>
 <div class="catalog-category-head">
-<h3>Эпоксидные смолы</h3>
+<h3>Epoxy resins</h3>
 </div>
-<p class="catalog-category-desc">Базовые смолы для компаундов, покрытий и адгезивов — от низковязких заливочных до специальных марок под задачу.</p>
-<p class="catalog-soon">Каталог пополняется — данные скоро появятся</p>
+<p class="catalog-category-desc">Base resins for compounds, coatings and adhesives — from low-viscosity potting grades to special-purpose grades.</p>
+<p class="catalog-soon">The catalog is being updated — data coming soon</p>
 </article>
 <article class="catalog-category" data-catalog-panel="hardeners" hidden>
 <div class="catalog-category-head">
-<h3>Отвердители</h3>
+<h3>Hardeners</h3>
 </div>
-<p class="catalog-category-desc">Отвердители и ускорители для разных режимов отверждения — от холодного до высокотемпературного.</p>
-<p class="catalog-soon">Каталог пополняется — данные скоро появятся</p>
+<p class="catalog-category-desc">Hardeners and accelerators for various curing modes — from cold to high-temperature.</p>
+<p class="catalog-soon">The catalog is being updated — data coming soon</p>
 </article>
 </div>
 </div>
@@ -1295,9 +1296,9 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
     <div class="sec-wrap sec-contact" id="contact">
       <div class="contact-card">
         <div class="contact-copy">
-          <p class="section-label">Связаться с нами</p>
-          <h2 class="section-heading">Обсудим вашу <em>задачу</em></h2>
-          <p class="contact-lead">Расскажите о вашем проекте — подберём или разработаем эпоксидную систему под ваши требования и подготовим расчёт.</p>
+          <p class="section-label">Contact us</p>
+          <h2 class="section-heading">Let’s discuss your <em>project</em></h2>
+          <p class="contact-lead">Tell us about your project — we will select or develop an epoxy system for your requirements and prepare a quote.</p>
           <div class="contact-details">
             <a class="contact-line" href="tel:+79636553780"><span class="contact-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -1309,19 +1310,19 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
         </div>
         <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('.form-done').hidden=false; this.querySelectorAll('input,textarea,button').forEach(function(el){el.disabled=true});">
           <label>
-            <span>Ваше имя</span>
-            <input type="text" name="name" autocomplete="name" required placeholder="Иван Иванов">
+            <span>Your name</span>
+            <input type="text" name="name" autocomplete="name" required placeholder="Ivan Ivanov">
           </label>
           <label>
-            <span>Телефон или e-mail</span>
+            <span>Phone or e-mail</span>
             <input type="text" name="contact" autocomplete="on" required placeholder="+7 (___) ___-__-__">
           </label>
           <label>
-            <span>Опишите задачу</span>
-            <textarea name="message" rows="4" placeholder="Например: нужна заливка электронных плат, 200 кг в месяц"></textarea>
+            <span>Describe your task</span>
+            <textarea name="message" rows="4" placeholder="For example: potting of electronic boards, 200 kg per month"></textarea>
           </label>
-          <button class="contact-submit" type="submit">Отправить запрос</button>
-          <p class="form-done" hidden>Спасибо! Мы свяжемся с вами в течение трёх рабочих дней.</p>
+          <button class="contact-submit" type="submit">Send request</button>
+          <p class="form-done" hidden>Thank you! We will contact you within three business days.</p>
         </form>
       </div>
     </div>
@@ -1331,15 +1332,15 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <img class="logo" src="new logo RU.svg" alt="Логотип ООО «ОТР»" width="82" height="57">
-          <p class="footer-tagline">Эпоксидные системы<br>от НИОКР до производства</p>
+          <img class="logo" src="new logo eng.svg" alt="OTS logo" width="82" height="57">
+          <p class="footer-tagline">Epoxy systems<br>from R&D to production</p>
         </div>
-        <nav class="footer-nav" aria-label="Навигация в футере">
-          <a href="#about">О компании</a>
-          <a href="#services">Сферы деятельности</a>
-          <a href="#applications">Отрасли применения</a>
-          <a href="#catalog">Каталог</a>
-          <a href="#contact">Связаться с нами</a>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#applications">Industries</a>
+          <a href="#catalog">Catalog</a>
+          <a href="#contact">Contact us</a>
         </nav>
         <div class="footer-contacts">
           <a href="tel:+79636553780">+7 (963) 655-37-80</a>
@@ -1347,7 +1348,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 ООО «Оптимальные технологические решения». Все права защищены.</p>
+        <p>© 2026 Optimal Technology Solutions. All rights reserved.</p>
       </div>
     </footer>
   </div>
@@ -1467,48 +1468,48 @@ if (e.key === 'Escape') setOpen(false);
 <script>
 const sectorData = {
   industry: {
-    category: 'Высокоточные процессы',
-    title: 'Промышленность',
-    description: 'Проектирование и разработка композитных материалов на основе эпоксидных смол для высокотехнологного промышленного оборудования и автоматизированных систем.',
-    list: ['Композитные материалы для контейнеров МАДМ', 'Компоненты для куполов приёмников', 'Специализированные элементы док-станций'],
+    category: 'High-precision processes',
+    title: 'Industry',
+    description: 'Design and development of composite materials based on epoxy resins for high-tech industrial equipment and automated systems.',
+    list: ['Composite materials for MADM containers', 'Components for receiver domes', 'Specialized docking station elements'],
     photo: 'assets/industry-light.jpg',
-    photoAlt: 'Автоматизированная производственная линия с белым оборудованием в цеху',
-    photoLabel: 'Промышленные объекты',
+    photoAlt: 'Automated production line with white equipment in a workshop',
+    photoLabel: 'Industrial facilities',
     counter: '02 / 04',
-    topic: 'Система для промышленности'
+    topic: 'System for industry'
   },
   sport: {
-    category: 'Лёгкость и прочность',
-    title: 'Спорт и композиты',
-    description: 'Высокоэффективные эпоксидные системы для спортивного инвентаря и дизайнерских потребительских товаров с превосходным соотношением прочности к весу.',
-    list: ['Хоккейные клюшки и удочки', 'Ледорубы и дизайнерские ножи', 'Инфузионные системы для дизайнерских сноубордов'],
+    category: 'Lightness and strength',
+    title: 'Sports and composites',
+    description: 'High-performance epoxy systems for sports equipment and designer consumer goods with an excellent strength-to-weight ratio.',
+    list: ['Hockey sticks and fishing rods', 'Ice axes and designer knives', 'Infusion systems for designer snowboards'],
     photo: '16d4727bfdc741e98f796bc2e957d50f.jpg',
-    photoAlt: 'Шоссейный велосипед у бетонной стены',
-    photoLabel: 'Инновационные материалы',
+    photoAlt: 'Road bike against a concrete wall',
+    photoLabel: 'Innovative materials',
     counter: '03 / 04',
-    topic: 'Система для спортивных композитов'
+    topic: 'System for sports composites'
   },
   electronics: {
-    category: 'Диэлектрические свойства',
-    title: 'Электроника и электротехника',
-    description: 'Составы для заливки компонентов, герметизации, защитных покрытий плат и корпусов, где важны диэлектрические характеристики и термостабильность материала.',
-    list: ['Компаунды', 'Отвердители', 'Эпоксидные смолы'],
+    category: 'Dielectric properties',
+    title: 'Electronics & electrical engineering',
+    description: 'Formulations for component potting, sealing and protective coatings for boards and housings, where dielectric performance and thermal stability matter.',
+    list: ['Compounds', 'Hardeners', 'Epoxy resins'],
     photo: '881fb31ced2d62f387f5726084171d2b.jpg',
-    photoAlt: 'Электронные компоненты и плата на светло-голубом фоне',
-    photoLabel: 'Специальные свойства',
+    photoAlt: 'Electronic components and a board on a light-blue background',
+    photoLabel: 'Special properties',
     counter: '01 / 04',
-    topic: 'Система для электроники'
+    topic: 'System for electronics'
   },
   research: {
-    category: 'Материалы нового поколения',
-    title: 'Текущие НИОКР',
-    description: 'Наш исследовательский отдел постоянно расширяет границы, разрабатывая композитные материалы нового поколения для перспективных рынков и применений.',
-    list: ['Разработка автомобильных композитных материалов', 'Композиты нового поколения для потребительских товаров', 'Передовые исследования в химии полимеров'],
+    category: 'Next-generation materials',
+    title: 'Current R&D',
+    description: 'Our research department keeps pushing the boundaries, developing next-generation composite materials for emerging markets and applications.',
+    list: ['Development of automotive composite materials', 'Next-generation composites for consumer goods', 'Advanced research in polymer chemistry'],
     photo: '3792c22d8a1e0472756a818945e44566.jpg',
-    photoAlt: 'Прозрачные пузыри с синей жидкостью на светлом фоне',
-    photoLabel: 'Исследования и разработки',
+    photoAlt: 'Transparent bubbles with blue liquid on a light background',
+    photoLabel: 'Research and development',
     counter: '04 / 04',
-    topic: 'Система для НИОКР'
+    topic: 'System for R&D'
   }
 };
 function $(s){return document.querySelector(s)}
