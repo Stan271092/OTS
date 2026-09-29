@@ -727,6 +727,7 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:15px}
 .application-panel{display:grid;grid-template-columns:1.6fr 1fr;gap:10px;height:501px;min-height:501px;background:transparent;border-radius:0;overflow:visible;box-shadow:none}
 .application-photo{position:relative;min-width:0;background:#fdfeff;border:1px solid #d7e4f5;border-radius:18px;overflow:hidden}
 .application-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.application-photo img[src="aipool-1790704553367.png"],.application-photo img[src="aipool-1790708195360.png"]{object-position:10% 50%}
 /* пилюли на фото — текст цвета цифр таба (скрин 338: #51b6ff) */
 .photo-label{position:absolute;left:16px;right:16px;bottom:16px;width:fit-content;max-width:calc(100% - 32px);padding:10px 14px;background:rgba(253,254,255,.94);border:1px solid #d7e4f5;border-radius:10px;color:#51b6ff;font:400 12px/1.4 var(--head)}
 /* right:auto обязателен: styles.css тянет .photo-counter{right:22px} —
@@ -901,7 +902,8 @@ transform:translateY(-50%);display:flex;align-items:center;font-size:15px}
    (наследие translateY(4px) под старую мелкую вёрстку). Цифры и латиница без
    хвостиков — их зрительный центр почти совпадает с геометрическим, поэтому
    поднимаем текст на 4px: лёгкий -1px компенсирует оптику глифов */
-.contact-details .contact-line{font-size:18px;font-weight:400}
+.contact-details .contact-line{font-size:18px;font-weight:400;min-height:89px}
+.contact-details .contact-line > span{margin-top:0}
 .contact-line .contact-text{display:inline-block;font-size:inherit;transform:translateY(-1px)}
 /* иконка — синий круг с белым знаком, как кнопки-пилюли сайта */
 /* специфичность 0,2,0: .contact-details span{color:#78888d} из styles.css
@@ -1190,7 +1192,7 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 </div>
 <article class="application-panel" id="application-panel" aria-labelledby="application-title">
 <div class="application-photo">
-<img id="application-image" src="29e61483-af0a-49fd-962a-076c3a4bcc60.png" alt="Электронные компоненты и плата на светло-голубом фоне" width="1536" height="1024">
+<img id="application-image" src="aipool-1790703788811.png" alt="Электронные компоненты и плата на светло-голубом фоне" width="1536" height="1024">
 <span class="photo-label" id="application-photo-label">Специальные свойства</span>
 <span class="photo-counter" id="application-counter" aria-hidden="true">01 / 04</span>
 </div>
@@ -1288,10 +1290,9 @@ stroke="#29a6ff" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/
 <div class="catalog-category-head"><h3>Отвердители</h3><a class="catalog-download catalog-download-desktop" href="Каталог продукции_2026.xlsx" download="Каталог продукции_2026.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a></div>
 <p class="catalog-category-desc">Отвердители для разных режимов отверждения — технические характеристики марок Lapox®.</p>
 <section class="catalog-subsection"><div class="catalog-table-wrap"><table class="catalog-table"><thead><tr><th>Марка Lapox®</th><th>Внешний вид</th><th>Температура плавления
-°C</th><th>Чистота по HPLC
-%</th><th>Зольность
+°C</th><th>Чистота по ВЭЖХ %</th><th>Зольность
 %</th><th>Средний размер частиц
-мкм</th></tr></thead><tbody><tr><td>ASH-10</td><td>Белый или почти белый порошок</td><td>176 – 185</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>—</td></tr><tr><td>ASH-10 MIC</td><td>Белый или почти белый порошок</td><td>176 – 180</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>5 – 15</td></tr><tr><td>ASH-10 FF</td><td>Белый или почти белый порошок</td><td>176 – 185</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>—</td></tr><tr><td>ASH-11</td><td>Белый или коричневато-белый порошок</td><td>167 – 175</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>—</td></tr><tr><td>ASH-11 MIC</td><td>От белого до желтовато-коричневого порошка</td><td>167 – 175</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>Макс. 10</td></tr></tbody></table></div></section>
+мкм</th></tr></thead><tbody><tr><td>ASH-10 (4,4′-диаминодифенилсульфон)</td><td>Белый или почти белый порошок</td><td>176 – 185</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>—</td></tr><tr><td>ASH-10 MIC (микронизированный 4,4′-диаминодифенилсульфон)</td><td>Белый или почти белый порошок</td><td>176 – 180</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>5 – 15</td></tr><tr><td>ASH-10 FF (сыпучая форма 4,4′-диаминодифенилсульфона)</td><td>Белый или почти белый порошок</td><td>176 – 185</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>—</td></tr><tr><td>ASH-11 (3,3′-диаминодифенилсульфон)</td><td>Белый или коричневато-белый порошок</td><td>167 – 175</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>—</td></tr><tr><td>ASH-11 MIC (микронизированный 3,3′-диаминодифенилсульфон)</td><td>От белого до желтовато-коричневого порошка</td><td>167 – 175</td><td>Мин. 99.0</td><td>Макс. 0.10</td><td>Макс. 10</td></tr></tbody></table></div></section>
 <p class="catalog-note">Технические паспорта и паспорта безопасности предоставляются по запросу.</p>
 <a class="catalog-download catalog-download-mobile" href="Каталог продукции_2026.xlsx" download="Каталог продукции_2026.xlsx"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m-5-4 5 5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Скачать каталог (XLSX)</a>
 </article>
@@ -1492,7 +1493,7 @@ const sectorData = {
     title: 'Промышленность',
     description: 'Разработка и поставка полимерных материалов для высокотехнологных отраслей промышленности.',
     list: ['Мультифункциональные эпоксидные смолы', 'Отвердители эпоксидных смол', 'Материалы для композитной оснастки', 'Готовые системы связующих'],
-    photo: '2e5a2ab6-7740-4926-b1df-b5c6209e072b.png',
+    photo: 'aipool-1790708925388.png',
     photoAlt: 'Автоматизированная производственная линия с белым оборудованием в цеху',
     photoLabel: 'Промышленные объекты',
     counter: '02 / 04',
@@ -1503,7 +1504,7 @@ const sectorData = {
     title: 'Спорт и композиты',
     description: 'Высокоэффективные эпоксидные системы для спортивного инвентаря и дизайнерских потребительских товаров с превосходным соотношением прочности к весу.',
     list: ['Хоккейные клюшки и удочки', 'Ледорубы и дизайнерские ножи', 'Инфузионные системы для дизайнерских сноубордов'],
-    photo: '45952ac6-8732-4143-b909-235535b77621.png',
+    photo: 'aipool-1790704553367.png',
     photoAlt: 'Шоссейный велосипед у бетонной стены',
     photoLabel: 'Инновационные материалы',
     counter: '03 / 04',
@@ -1514,7 +1515,7 @@ const sectorData = {
     title: 'Электроника и электротехника',
     description: 'Составы для заливки компонентов, герметизации, защитных покрытий плат и корпусов, где важны диэлектрические характеристики и термостабильность материала.',
     list: ['Компаунды', 'Отвердители', 'Эпоксидные смолы'],
-    photo: '29e61483-af0a-49fd-962a-076c3a4bcc60.png',
+    photo: 'aipool-1790703788811.png',
     photoAlt: 'Электронные компоненты и плата на светло-голубом фоне',
     photoLabel: 'Специальные свойства',
     counter: '01 / 04',
@@ -1525,7 +1526,7 @@ const sectorData = {
     title: 'Текущие НИОКР',
     description: 'Наш исследовательский отдел постоянно расширяет границы, разрабатывая композитные материалы нового поколения для перспективных рынков и применений.',
     list: ['Разработка автомобильных композитных материалов', 'Композиты нового поколения для потребительских товаров', 'Передовые исследования в химии полимеров'],
-    photo: '3792c22d8a1e0472756a818945e44566.jpg',
+    photo: 'aipool-1790708195360.png',
     photoAlt: 'Прозрачные пузыри с синей жидкостью на светлом фоне',
     photoLabel: 'Исследования и разработки',
     counter: '04 / 04',
@@ -1535,23 +1536,33 @@ const sectorData = {
 function $(s){return document.querySelector(s)}
 function $$(s){return Array.from(document.querySelectorAll(s))}
 const sectorButtons=$$('[data-sector]');
-sectorButtons.forEach(btn=>btn.addEventListener('click',()=>{
+let sectorRequest=0;
+sectorButtons.forEach(btn=>btn.addEventListener('click',async()=>{
+  const request=++sectorRequest;
   const sector=btn.dataset.sector;
-  sectorButtons.forEach(b=>b.setAttribute('aria-pressed',b===btn));
   const data=sectorData[sector];
+  const nextImage=$('#application-image').cloneNode(false);
+  nextImage.hidden=!data.photo;
+  nextImage.alt=data.photoAlt;
+  if(data.photo){
+    nextImage.src=data.photo;
+    try{
+      await nextImage.decode();
+    }catch(error){
+      console.warn('Application image could not be loaded',error);
+      return;
+    }
+  }else{
+    nextImage.removeAttribute('src');
+  }
+  if(request!==sectorRequest)return;
+  $('#application-image').replaceWith(nextImage);
+  sectorButtons.forEach(b=>b.setAttribute('aria-pressed',b===btn));
   $('#application-category').textContent=data.category;
   $('#application-title').innerHTML=data.title;
   $('#application-description').textContent=data.description;
   const list=$('#application-list');
   list.innerHTML=data.list.map(t=>`<li>${t}</li>`).join('');
-  const img=$('#application-image');
-  img.hidden=!data.photo;
-  if(data.photo){
-    img.src=data.photo;
-  }else{
-    img.removeAttribute('src');
-  }
-  img.alt=data.photoAlt;
   $('#application-photo-label').textContent=data.photoLabel;
   $('#application-counter').textContent=data.counter;
   $('#application-cta').dataset.topic=data.topic;
