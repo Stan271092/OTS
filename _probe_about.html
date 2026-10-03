@@ -1,0 +1,45 @@
+<!doctype html><html><head><meta charset="utf-8"><title>probe</title></head><body style="margin:0;font:16px monospace;background:#fff">
+<iframe id="f" src="home-preview.html" style="width:1440px;height:900px;border:0"></iframe>
+<pre id="out" style="font-size:18px;padding:20px">measuring...</pre>
+<script>
+var frame = document.getElementById('f');
+frame.style.width = (Number(new URLSearchParams(location.search).get('width')) || 1440) + 'px';
+window.addEventListener('load', function () {
+  frame.contentDocument.querySelector('.about-photo img').loading = 'eager';
+  setTimeout(function () {
+    var f = document.getElementById('f');
+    var d = f.contentDocument;
+    var r = function (el) {
+      var b = el.getBoundingClientRect();
+      return Math.round(b.left) + ',' + Math.round(b.top) + ' ' + Math.round(b.width) + 'x' + Math.round(b.height);
+    };
+    var lines = [];
+    lines.push('iframe innerWidth=' + f.contentWindow.innerWidth);
+    try {
+      var bento = d.querySelector('.about-bento');
+      var cs = d.defaultView.getComputedStyle(bento);
+      lines.push('bento display=' + cs.display + ' cols=' + cs.gridTemplateColumns + ' rows=' + cs.gridTemplateRows);
+    } catch (e) { lines.push('bento err ' + e.message); }
+    ['about-col', 'about-atul', 'about-photo', 'about-tile'].forEach(function (cls) {
+      var els = d.querySelectorAll('.' + cls);
+      for (var i = 0; i < els.length; i++) {
+        lines.push(cls + '[' + i + '] ' + r(els[i]));
+      }
+    });
+    lines.push('doc scrollWidth=' + d.documentElement.scrollWidth + ' clientWidth=' + d.documentElement.clientWidth);
+    var img = d.querySelector('.about-photo img');
+    var imageStyle = d.defaultView.getComputedStyle(img);
+    var photoStyle = d.defaultView.getComputedStyle(img.parentElement);
+    lines.push('image src=' + img.getAttribute('src') + ' natural=' + img.naturalWidth + 'x' + img.naturalHeight + ' fit=' + imageStyle.objectFit + ' position=' + imageStyle.objectPosition);
+    lines.push('photo-background=' + photoStyle.backgroundImage);
+    var photo = img.parentElement.getBoundingClientRect();
+    var image = img.getBoundingClientRect();
+    var scale = Math.min(image.width / img.naturalWidth, image.height / img.naturalHeight);
+    var contentWidth = img.naturalWidth * scale;
+    var contentHeight = img.naturalHeight * scale;
+    lines.push('image-box=' + JSON.stringify({photo: {left: photo.left, top: photo.top, right: photo.right, bottom: photo.bottom}, content: {left: image.left + (image.width - contentWidth) / 2, top: image.top + (image.height - contentHeight) / 2, right: image.left + (image.width + contentWidth) / 2, bottom: image.top + (image.height + contentHeight) / 2}}));
+    document.getElementById('out').textContent = lines.join('\n');
+  }, 1500);
+});
+</script>
+</body></html>
